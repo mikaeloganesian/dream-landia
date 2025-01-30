@@ -1,10 +1,39 @@
-$primary: #FF6B01;
-$white: #FFFCFC;
-$gray: #F5F5F5;
-$black: #121216;
-$light-gray: #B4B4B4;
-$middle-gray: #7E7E7E;
-$dark-gray: #4D4D4D;
-$faint-orange: #F1EBE7;
-$ash-gray: #C3C3C3;
-$light-orange: #FF8935;
+:root {
+  --primary: #FF6B01;
+  --white: rgb(255, 252, 252);
+  --white-hover: rgba(255, 252, 252, 0.16);
+  --gray: #F5F5F5;
+  --black: #121216;
+  --light-gray: #B4B4B4;
+  --middle-gray: #7E7E7E;
+  --dark-gray: #4D4D4D;
+  --faint-orange: #F1EBE7;
+  --ash-gray: #C3C3C3;
+  --light-orange: #FF8935;
+
+  --displayLarge: 60px;
+  --displayAverage: 44px;
+  --displayMedium: 28px;
+  --displaySmall: 24px;
+
+  --textLarge: 24px;
+  --textAverage: 22px;
+  --textMAverage: 20px;
+  --textMedium: 18px;
+  --textSmall: 16px;
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --displayLarge: 68px;    /* 34px * 2 */
+    --displayAverage: 48px;  /* 24px * 2 */
+    --displayMedium: 40px;   /* 20px * 2 */
+    --displaySmall: 40px;    /* 20px * 2 */
+
+    --textLarge: 32px;       /* 16px * 2 */
+    --textAverage: 28px;     /* 14px * 2 */
+    --textMAverage: 28px;    /* 14px * 2 */
+    --textMedium: 32px;      /* 12px * 2 */
+    --textSmall: 12px;       /* 10px * 2 */
+  }
+}

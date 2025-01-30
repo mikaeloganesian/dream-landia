@@ -1,38 +1,32 @@
 import React from 'react';
-import logo from '../assets/images/Dream Landia - Logotype.png';
-import internetIcon from '../assets/images/internet-icon.png';
-import getFeedbackIcon from '../assets/images/get-feedback-icon.png';
-import Button from "./Button";
-
+import PropTypes from 'prop-types';
+import logo from '../assets/images/others/Dream Landia - Logotype.png';
+import internetIcon from '../assets/images/others/internet-icon.png';
+import getFeedbackIcon from '../assets/images/others/get-feedback-icon.png';
+import Button from './Button';
 
 function Header() {
     return (
         <div className="header">
-            <img src={logo} className="logo" alt={"Dream-Landia"}></img>
+            {/* Логотип */}
+            <a href="#MainBlockMenuHook"><img src={logo} className="logo" alt="Dream Landia Logo" /></a>
+
+            {/* Пункты меню */}
             <div className="points">
-                <h1 className="point">Недвижимость</h1>
-                <h1 className="point">Преимущества</h1>
-                <h1 className="point">О нас</h1>
-                <h1 className="point">Районы</h1>
-                <h1 className="point">Основатели</h1>
-            </div>
-            <div className="buttons">
-                <Button styleId={0} content={"English"} icon={internetIcon}/>
-                <Button styleId={2} content={"Оставить заявку"} icon={getFeedbackIcon}/>
+                <div className="point"><a href={"#AllProjectsMenuHook"}>Недвижимость</a></div>
+                <div className="point"><a href={"#AdvantagesMenuHook"}>Преимущества</a></div>
+                <div className="point"><a href={"#AboutCompanyMenuHook"}>О нас</a></div>
+                <div className="point"><a href={"#RegionsMenuHook"}>Районы</a></div>
+                <div className="point"><a href={"#CreatorsMenuHook"}>Основатели</a></div>
             </div>
 
+            {/* Кнопки */}
+            <div className="buttons">
+                <Button buttonID={"MenuFixedEngButton"} styleId={0} content="English" icon={internetIcon}/>
+                <a href={"#GetFeedbackMenuHook"}><Button buttonID={"MenuFixedGetFeedbackButton"} styleId={2} content="Оставить заявку" icon={getFeedbackIcon}/></a>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Header;
-
-
-
-
-
-
-
-
-
-

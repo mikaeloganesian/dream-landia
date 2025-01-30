@@ -12,7 +12,6 @@
   color: var(--white);
 }
 
-
 //Scroll bar
 /* Стилизация полосы прокрутки для WebKit-браузеров (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
@@ -60,11 +59,9 @@ div {
   scroll-margin-top: 230px; /* Отступ сверху для каждого блока */
 }
 
-
 * {
-  cursor: none !important;
+  cursor: none ;
 }
-
 
 img {
   object-fit: cover;
@@ -99,25 +96,20 @@ img {
   }
 }
 
-
 // Базовые стили
 body {
-  margin: 0 auto; /* Центрируем сайт */
-
   background-color: var(--gray);
+  margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Wix Madefor Display", serif;
 }
 
 .center {
-  width: 100%;
-  @include flex-center;
-}
+  width: 100%;}
 
 .block {
   min-height: 100px;
-  border-radius: 64px;
+  border-radius: 32px;
   background-color: var(--white);
   .content {
     padding: 88px;
@@ -172,9 +164,7 @@ body {
   border-radius: 32px;
   @include flex-space-between;
 
-  .points {
-    @include flex-center;
-    gap: 48px;
+  .points {    gap: 48px;
     .point {
       color: var(--white);
       font-size: var(--textMedium);
@@ -228,9 +218,7 @@ body {
   display: flex;
 }
 
-.button {
-  @include flex-center;
-  height: 52px;
+.button {  height: 52px;
   padding: 0 24px;
   gap: 8px;
   border-radius: 16px;
@@ -489,7 +477,6 @@ body {
   }
 }
 
-
 .line {
   transition: 0.3s ease;
   margin-top: 20px;
@@ -713,7 +700,6 @@ body {
   }
 }
 
-
 .statisticContent {
   width: 100%;
   height: auto;
@@ -752,7 +738,6 @@ body {
     align-items: flex-end;
     justify-content: space-between;
 
-
     .statisticButtons {
       top: 24px;
       right: 24px;
@@ -769,7 +754,6 @@ body {
         line-height: 140%;
       }
     }
-
 
     #DreamLandiaBlock {
       background-color: var(--gray);
@@ -1074,37 +1058,9 @@ body {
   border-radius: 32px;
   background-image: url("../assets/images/FooterMedia/footerBackground.png");
   width: 100%;
-
-  .termsOfUse {
-    margin-top: 64px;
-    font-size: var(--textMedium);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
-    color: var(--white);
-  }
-
-  .license {
-    margin-top: 16px;
-    font-size: var(--textMedium);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
-    color: var(--white);
-  }
 }
 
 .footerContent {
-  .socialLinks {
-    margin-top: 28px;
-    display: flex;
-    gap: 8px;
-    .socialLink {
-      width: 46px;
-      height: 46px;
-      transition: 0.3s ease;
-    }
-  }
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -1117,6 +1073,34 @@ body {
       font-style: normal;
       font-weight: 500;
       line-height: 104%;
+    }
+    .socialLinks {
+      margin-top: 28px;
+      display: flex;
+      gap: 8px;
+      .socialLink {
+        width: 46px;
+        height: 46px;
+        transition: 0.3s ease;
+      }
+    }
+
+    .termsOfUse {
+      margin-top: 66px;
+      font-size: var(--textMedium);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--white);
+    }
+
+    .license {
+      margin-top: 16px;
+      font-size: var(--textMedium);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--white);
     }
   }
 
@@ -1192,7 +1176,6 @@ body {
     }
   }
 }
-
 
 .creatorsContent {
   width: 100%;
@@ -1280,7 +1263,6 @@ body {
     }
   }
 }
-
 
 .FAQContent {
   width: 100%;
@@ -1560,7 +1542,6 @@ body {
           }
         }
         .ButtonMail {
-          transition: 0.3s ease;
           grid-column: span 2;
           display: flex;
           align-items: center;
@@ -1574,11 +1555,6 @@ body {
           font-weight: 400;
           line-height: 140%; /* 25.2px */
           color: var(--light-gray);
-        }
-        .active {
-          transition: 0.3s ease;
-          background: var(--primary);
-          color: var(--white);
         }
       }
     }
@@ -1621,7 +1597,6 @@ body {
     color: var(--black);
   }
 }
-
 
 .Calculator {
   display: grid;
@@ -1700,11 +1675,6 @@ body {
       .plusIcon, .minusIcon {
         width: 24px;
         height: 24px;
-        transition: filter 0.3s ease;
-      }
-      .activeMinusIcon {
-        transition: filter 0.3s ease;
-        filter: brightness(0);
       }
     }
   }
@@ -1763,9 +1733,7 @@ body {
   }
 }
 
-
 //убрал ненужный gap - так быстрее
-
 
 .GetFeedbackContent {
   display: grid;
@@ -1794,7 +1762,7 @@ body {
   }
 
   .getInfoBlock {
-    min-height: 280px !important;
+    min-height: 280px ;
     margin-bottom: 32px;
     display: grid;
     grid-column: span 8;
@@ -1895,7 +1863,6 @@ body {
   }
 }
 
-
 .stage-two-content {
   grid-column: span 8;
   display: grid;
@@ -1917,12 +1884,6 @@ body {
       margin-right: 24px;
       width: 50px;
       height: 50px;
-      filter: brightness(10) invert(35%) sepia(0) saturate(100%);
-      transition: filter 0.3s ease;
-    }
-    .icon-active {
-      transition: filter 0.3s ease;
-      filter: brightness(10) invert(53%) sepia(68%) saturate(1237%);
     }
     .stage-two-title {
       font-size: var(--textLarge);
@@ -1948,11 +1909,10 @@ body {
   }
 }
 .activeButton {
-  background: var(--primary) !important;
-  color: var(--white) !important;
+  background: var(--primary) ;
+  color: var(--white) ;
   transition: 0.3s ease;
 }
-
 
 .stage-five-content {
   grid-column: span 8;
@@ -2011,7 +1971,6 @@ body {
     left: 16px;
   }
 }
-
 
 .stage-six-content {
   grid-column: span 8;
@@ -2122,15 +2081,8 @@ body {
     height: 28px;
     top: 16px;
     right: 16px;
-    filter: brightness(10) invert(35%) sepia(0) saturate(100%);
-    transition: filter 0.3s ease;
-  }
-  .icon-active {
-    transition: filter 0.3s ease;
-    filter: brightness(10) invert(53%) sepia(68%) saturate(1237%);
   }
 }
-
 
 .stage-seven-container-right {
   border-radius: 32px;
@@ -2172,13 +2124,6 @@ body {
       width: 40px;
       height: 40px;
       margin-bottom: 68px;
-      filter: brightness(10) invert(35%) sepia(0) saturate(100%);
-      transition: filter 0.3s ease;
-    }
-
-    .icon-active {
-      transition: filter 0.3s ease;
-      filter: brightness(10) invert(53%) sepia(68%) saturate(1237%);
     }
 
     .stage-seven-right-title {
@@ -2190,7 +2135,6 @@ body {
     }
   }
 }
-
 
 input:focus {
   outline: none; /* Убирает стандартную рамку */
@@ -2215,90 +2159,61 @@ input:focus {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Buttons Hover */
 #MenuFixedEngButton {
   transition: 0.6s ease;
 }
 #MenuFixedEngButton:hover{
   transition: 0.6s ease;
-  background-color: var(--white)-hover !important;
+  background-color: var(--white)-hover ;
 }
-
-
 
 #MenuFixedGetFeedbackButton {
   transition: 0.6s ease;
 }
 #MenuFixedGetFeedbackButton:hover {
   transition: 0.6s ease;
-  background-color: var(--white)-hover !important;
-  color: var(--white) !important;
+  background-color: var(--white)-hover ;
+  border: 2px solid var(--white)-hover ;
+  color: var(--white) ;
 }
-
 
 #AllProjectsGetMoreInfoButton {
   transition: 0.3s ease;
 }
 #AllProjectsGetMoreInfoButton:hover {
   transition: 0.3s ease;
-  color: var(--light-gray) !important;
+  color: var(--light-gray) ;
 }
 
 .CalculatorCounterBlock:hover {
   transition: 0.3s ease;
-  background: var(--white) !important;
+  background: var(--white) ;
 }
 
 .CalculatorInputValue:hover {
   transition: 0.6s ease;
-  background: var(--white) !important;
+  background: var(--white) ;
 }
-
 
 .CalculatorCategory:hover {
   transition: 0.3s ease;
-  color: var(--light-gray) !important;
+  color: var(--light-gray) ;
 }
 
 .GetResults:hover {
   transition: 0.3s ease;
-  background: var(--light-orange) !important;
+  background: var(--light-orange) ;
 }
 
 .AverageDataBanner:hover {
   transition: 0.3s ease;
-  color: var(--light-gray) !important;
+  color: var(--light-gray) ;
 }
 
 .InputMail:hover {
   transition: 0.3s ease;
-  background: var(--white) !important;
+  background: var(--white) ;
 }
 
 #AboutCompanyGetMoreButton {
@@ -2307,21 +2222,19 @@ input:focus {
 
 #AboutCompanyGetMoreButton:hover {
   transition: 0.3s ease;
-  background: var(--light-orange) !important;
+  background: var(--light-orange) ;
 }
-
 
 #StatisticContentButton {
   transition: 0.3s ease;
-  background: var(--white) !important;
-  border: 2px solid var(--gray) !important;
+  background: var(--white) ;
+  border: 2px solid var(--gray) ;
 }
 
 #StatisticContentButton:hover {
   transition: 0.3s ease;
-  background: var(--gray) !important;
+  background: var(--gray) ;
 }
-
 
 .socialLink:hover {
   transition: 0.3s ease;
@@ -2341,7 +2254,7 @@ input:focus {
 }
 .footerContact:hover {
   transition: 0.3s ease;
-  background: #FFFCFC16 !important;
+  background: #FFFCFC16 ;
 }
 .address, .showInMap {
   transition: 0.3s ease;
@@ -2349,29 +2262,8 @@ input:focus {
 
 .address:hover, .showInMap:hover {
   transition: 0.3s ease;
-  background: #FFFCFC16 !important;
+  background: #FFFCFC16 ;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Mobile
 
@@ -2391,14 +2283,13 @@ input:focus {
     grid-column: span 4;
   }
 
-
   .regionsContent .regionsText .regionsTitle {
-    grid-column: span 20 !important;
+    grid-column: span 20 ;
   }
   .regionsContent .regionsText .regionsDescription {
-    width: 100% !important;
-    max-width: 600px !important;
-    grid-column: span 20 !important;
+    width: 100% ;
+    max-width: 600px ;
+    grid-column: span 20 ;
   }
 
   .regionsContent .regionContent .regionBlock {
@@ -2408,7 +2299,6 @@ input:focus {
   .regionsContent .mapBlock {
     grid-column: span 8;
   }
-
 
   .mainBlock {
     .content {
@@ -2434,7 +2324,6 @@ input:focus {
       }
     }
   }
-
 
   .CalculatorContent {
 
@@ -2463,131 +2352,15 @@ input:focus {
   }
 }
 
-.statistic-mobile-container {
-  display: none;
-}
-.statistic-mobile-description {
-  display: none;
-}
-
 @media (max-width: 1875px) {
-  .statistic-mobile-description {
-    margin-top: 32px !important;
-    text-align: center;
-    font-size: 12px !important;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 104%; /* 16.8px */
-    display: block;
-    color: var(--middle-gray);
-  }
-  .statisticContent {
-    display: block;
-  }
   .statisticContent .rightContainer {
     display: none;
   }
   .statisticContent .leftContainer .title {
     margin-bottom: 12px;
-  }
-  .statistic-mobile-container {
-    align-content: end;
-    min-height: 824px;
-    grid-column: span 4;
-    display: grid !important;
-    align-items: end;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 28px !important;
-    border-radius: 40px;
-    border: 2px solid var(--gray);
-    background: var(--white);
-    margin-top: 48px !important;
-    padding: 32px !important;
 
-    .statistic-mobile-line {
-      width: 100%;
-      border-bottom: 1px solid var(--gray);
-      grid-column: span 3;
-    }
-    .statistic-mobile-title {
-      grid-column: span 1;
-      text-align: center;
-      margin-top: 26px !important;
-      font-size: 12px !important;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 104%; /* 16.8px */
-      color: var(--dark-gray);
-    }
-
-    #statistic-mobile-line {
-      grid-column: span 3;
-    }
-
-    .statistic-mobile-button {
-      grid-column: span 3;
-      text-align: center;
-      padding: 24px 0 !important;
-      border-radius: 24px;
-      border: 2px solid var(--gray);
-      background: var(--white);
-      font-size: 14px !important;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 140%; /* 19.6px */
-      color: var(--dark-gray);
-    }
-
-    .statistic-mobile-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      grid-column: span 1 !important;
-      .statistic-mobile-value {
-        font-size: 24px !important;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 104%; /* 12.48px */
-        color: var(--dark-gray);
-        border-radius: 16px;
-        padding: 12px 16px 16px 16px !important;
-        border: 2px solid var(--gray);
-        background: var(--white);
-        text-align: center;
-      }
-      .statistic-mobile-graph {
-        margin-top: 12px !important;
-        border: 2px solid var(--gray);
-        border-radius: 24px 24px 0 0 !important;
-        display: flex;
-        width: 80%;
-        grid-column: span 1;
-      }
-      .statistic-mobile-fill {
-        background: var(--gray);
-        width: 100%;
-        height: 98%;
-        border-radius: 8px 8px 0 0;
-        background: var(--gray);
-        margin: 12px 12px 0 12px !important;
-      }
-      #graph1 {
-        height: 222px;
-      }
-      #graph2 {
-        height: 334px;
-      }
-      #graph3 {
-        height: 440px;
-      }
-      #dream-landia-graph {
-        background: var(--primary);
-      }
-    }
   }
 }
-
-
 
 @media (max-width: 1800px) {
   .advantagesContent .advantages .advantage {
@@ -2677,7 +2450,6 @@ input:focus {
   display: none;
 }
 
-
 @media (max-width: 1200px) {
   .regionsContent .regionContent .regionBlock .selectRegionBlock .regions {
     grid-template-columns: repeat(4, 1fr);
@@ -2712,14 +2484,11 @@ input:focus {
 
 }
 
-
-
-
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   * {
-    margin: 0 !important;
-    padding: 0 !important;
-    gap: 0 !important;
+    margin: 0 ;
+    padding: 0 ;
+    gap: 0 ;
   }
   #root {
     width: 100%;
@@ -2727,112 +2496,112 @@ input:focus {
   }
 // Main block
   .mainBlock {
-    margin: 8px !important;
+    margin: 8px ;
     .button {
-      gap: 16px !important;
-      padding: 32px 32px !important;
+      gap: 16px ;
+      padding: 32px 32px ;
       height: 0;
     }
   }
   .headerMobile {
-    padding: 16px 16px 16px 32px !important;
-    border-radius: 40px !important;
+    padding: 16px 16px 16px 32px ;
+    border-radius: 40px ;
   }
   .mainBlock {
     border-radius: 64px;
   }
   .mainBlock .content {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .mainBlock .textBlock {
-    padding-top: 192px !important;
+    padding-top: 192px ;
   }
   .mainBlock .content .textLine {
     justify-items: center;
   }
   .mainBlock .content .textLine .title {
-    width: 614px !important;
+    width: 614px ;
   }
   .mainBlock .content .textLine .description {
-    margin-top: 24px !important;
-    grid-column: span 5 !important;
+    margin-top: 24px ;
+    grid-column: span 5 ;
   }
   .mainBlock .content .cards {
-    margin-top: 104px !important;
+    margin-top: 104px ;
   }
   .mainBlock .content .cards {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .mainBlock .content .cards .card  {
     border-radius: 40px;
-    padding: 24px !important;
+    padding: 24px ;
   }
   .mainBlock .content .cards .card .cardLine .cardTitle {
-    padding-left: 24px !important;
-    width: 288px !important;
+    padding-left: 24px ;
+    width: 288px ;
   }
 
   // All projects
   .blockMargin {
-    margin: 8px !important;
+    margin: 8px ;
   }
   .block {
     border-radius: 40px;
   }
   .block .content {
-    padding: 48px 32px !important;
+    padding: 48px 32px ;
   }
   .allProjectsContent .textLine .description {
-    margin-top: 24px !important;
-    width: 100% !important;
+    margin-top: 24px ;
+    width: 100% ;
   }
   .allProjects {
-    height: 620px !important;
-    margin-top: 48px !important;
+    height: 620px ;
+    margin-top: 48px ;
   }
   .allProjects .block {
     height: 600px;
   }
   .allProjects .block .blockContent {
-    margin: 32px !important;
+    margin: 32px ;
   }
   .allProjects .block .blockContent .info{
-    margin-top: 32px !important;
+    margin-top: 32px ;
   }
 
   .info .button {
     height: auto;
-    padding: 20px 40px !important;
+    padding: 20px 40px ;
   }
   .info .text {
     display: grid;
-    gap: 8px !important;
+    gap: 8px ;
   }
   .line {
-    margin: 32px 0 !important;
+    margin: 32px 0 ;
   }
   .extraInfo .table {
     display: grid;
-    gap: 16px !important;
+    gap: 16px ;
   }
   //Calculator
   .CalculatorContent .CalculatorInfo .CalculatorDescription {
-    margin-top: 24px !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    margin-top: 24px ;
+    width: 100% ;
+    max-width: 100% ;
   }
   .CalculatorContent .CalculatorInfo .CalculatorTitle {
-    grid-column: span 8 !important;
-    max-width: 600px;
+    grid-column: span 8 ;
+    max-width: 100%;
   }
   .CalculatorContent .CalculatorBlocks {
-    gap: 16px !important;
-    margin-top: 48px !important;
+    gap: 16px ;
+    margin-top: 48px ;
   }
   .CalculatorContent .CalculatorBlocks .Calculator {
-    padding: 32px !important;
-    row-gap: 32px !important;
-    column-gap: 12px !important;
+    padding: 32px ;
+    row-gap: 32px ;
+    column-gap: 12px ;
   }
   .Calculator .CalculatorInput {
     grid-column: span 4;
@@ -2841,129 +2610,121 @@ input:focus {
     grid-column: span 4;
   }
   .Calculator .CalculatorInput .CalculatorInputTitle {
-    margin-bottom: 16px !important;
+    margin-bottom: 16px ;
   }
   .Calculator .CalculatorCounter .CalculatorCounterTitle {
-    margin-bottom: 16px !important;
+    margin-bottom: 16px ;
   }
   .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryTitle {
-    margin-bottom: 16px !important;
+    margin-bottom: 16px ;
   }
   .Calculator .CalculatorInput .CalculatorInputValue {
     display: flex;
-    padding: 24px 32px !important;
+    padding: 24px 32px ;
   }
   .Calculator .CalculatorCounter .CalculatorCounterBlock {
-    padding: 24px 32px !important;
+    padding: 24px 32px ;
   }
 
   .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryBlock {
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px !important;
+    gap: 12px ;
   }
 
   .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryBlock .CalculatorCategory .dot {
-    height: 8px !important;
-    width: 8px !important;
+    height: 8px ;
+    width: 8px ;
   }
   .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryBlock .CalculatorCategory {
     grid-column: span 2;
-    padding: 24px 0 !important;
+    padding: 24px 0 ;
   }
   .Calculator .GetResults {
-    padding: 28px 0 !important;
+    padding: 28px 0 ;
   }
 
   .CalculatorContent .CalculatorBlocks .AverageData {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .CalculatorContent .CalculatorBlocks .AverageData .AverageMainData {
-    margin-top: 32px !important;
-    gap: 12px !important;
+    margin-top: 32px ;
+    gap: 12px ;
   }
-  .Results .DataBlank {
-    gap: 8px !important;
-    padding: 20px 24px 24px 24px !important;
-  }
-  .AverageData .DataBlank {
-    gap: 4px !important;
-    padding: 20px 24px 24px 24px !important;
-  }
-
-  .DataBlank .BlankTitle {
-    font-size: 10px !important;
+  .DataBlank {
+    gap: 8px ;
+    padding: 20px 24px 24px 24px ;
   }
   .CalculatorContent .CalculatorBlocks .AverageData .AverageDataLine .AverageDataBanner {
-    padding: 10px 20px !important;
+    padding: 10px 20px ;
   }
   .CalculatorContent .CalculatorBlocks .AverageData .AverageMainData .AverageResults {
-    margin-top: 64px !important;
-    padding: 20px 24px !important;
+    margin-top: 64px ;
+    padding: 20px 24px ;
   }
   .CalculatorContent .CalculatorBlocks .Results {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .CalculatorContent .CalculatorBlocks .Results .ResultsMainData {
-    margin-top: 32px !important;
-    gap: 12px !important;
+    margin-top: 32px ;
+    gap: 12px ;
   }
   .CalculatorContent .CalculatorBlocks .Results .GetSolution {
-    margin-top: 64px !important;
-    padding: 20px 24px 24px 24px !important;
+    margin-top: 64px ;
+    padding: 20px 24px 24px 24px ;
   }
   .CalculatorContent .CalculatorBlocks .Results .GetSolution .InputMail {
-    padding: 24px 24px 24px 32px !important;
-    margin-top: 16px !important;
+    padding: 24px 24px 24px 32px ;
+    margin-top: 16px ;
   }
   .CalculatorContent .CalculatorBlocks .Results .GetSolution .ButtonMail {
-    padding: 28px 0 !important;
-    margin-top: 12px !important;
+    padding: 28px 0 ;
+    margin-top: 12px ;
   }
 
   //Advantages
   .advantagesContent {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 96px 32px !important;
+    margin: 96px 32px ;
   }
   .advantagesContent .title {
-    margin-top: 16px !important;
+    margin-top: 16px ;
   }
   .advantagesContent .selectCategoryBlock {
-    max-width: 100% !important;
-    padding: 16px !important;
-    margin-top: 48px !important;
+    max-width: 100% ;
+    padding: 16px ;
+    margin-top: 48px ;
     grid-column: span 1;
-    gap: 8px !important;
+    gap: 8px ;
   }
   .advantagesContent .selectCategoryBlock .category {
-    padding: 18px !important;
+    padding: 18px ;
   }
   .advantagesContent .advantages {
-    gap: 16px !important;
-    margin-top: 16px !important;
+    gap: 16px ;
+    margin-top: 16px ;
   }
 
   .advantagesContent .advantages .advantage .advantageContent {
-    padding: 32px !important;
-    border-radius: 24px !important;
+    padding: 32px ;
+    border-radius: 24px ;
   }
   .advantagesContent .advantages .advantage .advantageContent .advantageDescription {
-    margin-top: 80px !important;
+    margin-top: 80px ;
   }
 
   //About company
   .aboutCompanyContent .container {
-    gap: 64px !important;
-    margin-top: 64px !important;
+    gap: 32px ;
+    margin-top: 64px ;
   }
   .aboutCompanyContent .line {
-    margin: 16px 0 12px 0 !important;
+    margin: 24px ;
   }
   #AboutCompanyGetMoreButton {
-    margin-top: 64px !important;
+    margin-top: 64px ;
     height: auto;
-    padding: 24px 0 !important;
+    padding: 24px 0 ;
   }
 
   //Statistic
@@ -2972,949 +2733,261 @@ input:focus {
     width: 100%;
   }
   .statisticContent .leftContainer .description {
-    margin-top: 24px !important;
+    margin-top: 24px ;
   }
   .regionsContent .regionsText .regionsDescription {
-    max-width: 100% !important;
-    margin-top: 24px !important;
+    max-width: 100% ;
+    margin-top: 24px ;
   }
   .regionsContent .regionContent {
-    margin-top: 48px !important;
+    margin-top: 48px ;
   }
   .regionsContent .regionContent .regionBlock {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .regionsContent .regionContent .regionBlock .selectRegionBlock .regions {
-    margin-top: 24px !important;
-    gap: 12px !important;
+    margin-top: 24px ;
+    gap: 12px ;
   }
   .regionsContent .regionContent .regionBlock #secondBlock {
-    margin-top: 32px !important;
+    margin-top: 32px ;
   }
   .regionsContent .regionContent .detailedDescription {
-    margin-top: 24px !important;
+    margin-top: 24px ;
   }
   .regionsContent .DataContentDetailed {
-    padding: 24px !important;
+    padding: 24px ;
   }
   .regionsContent .value {
     width: 100%;
-    margin-top: 28px !important;
+    margin-top: 28px ;
   }
 
   .regionsContent .regionContent .regionBlock #firstBlock {
-    margin-top: 32px !important;
+    margin-top: 32px ;
   }
   .regionsContent .infoFirstBlock {
-    gap: 12px !important;
-    margin-top: 24px !important;
+    gap: 12px ;
+    margin-top: 24px ;
   }
   .regionsContent .regionContent .infoFirstBlock .infoBlockDataLine {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .regionsContent .DataContent {
-    padding: 24px !important;
+    padding: 24px ;
   }
   .regionsContent .mapBlock {
-    margin-top: 32px !important;
+    margin-top: 32px ;
   }
-
 
   //Get feedback
   .GetFeedbackContent .title {
-    margin-top: 24px !important;
+    margin-top: 24px ;
   }
   .GetFeedbackContent .getInfoBlock {
-    margin-top: 48px !important;
+    margin-top: 48px ;
   }
 
   // ----> Stage 1
   .stage-one-content {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .stage-one-content .stage-one-container {
     grid-column: span 4;
   }
   .stage-one-content .stage-one-title {
-    padding: 12px 16px 16px 16px !important;
+    padding: 12px 16px 16px 16px ;
   }
   // ----> Stage 2
   .stage-two-content {
-    gap: 12px !important;
-  }
-
-  .stage-two-content .stage-two-container {
-    grid-column: span 8 !important;
-    padding: 24px !important;
+    gap: 12px ;
   }
 
   .stage-two-content .stage-two-container .stage-two-title {
-    margin-left: 24px !important;
+    margin-left: 20px ;
+    width: 180px;
   }
 
   .stage-two-content .stage-two-container .stage-two-icon {
-    margin-left: 20px !important;
+    margin-left: 20px ;
   }
-
 
   // ----> Stage 5
   .stage-five-content {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .stage-five-content .allRegions {
-    grid-column: span 8 !important;
+    grid-column: span 8 ;
   }
   .stage-five-content .stage-five-container {
     grid-column: span 4;
   }
   .stage-five-content .anotherRegions {
-    grid-column: span 8 !important;
+    grid-column: span 8 ;
   }
   .stage-five-content .stage-five-title {
-    margin: 20px !important;
+    margin: 20px ;
   }
   .stage-five-content .stage-five-region {
-    margin: 20px !important;
+    margin: 20px ;
   }
 
   // ----> Stage 6
   .stage-six-content {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .stage-six-content .stage-six-line {
-    gap: 12px !important;
+    gap: 12px ;
   }
-
 
   // ----> Stage 7
   .stage-seven-content .stage-seven-container-left {
-    grid-column: span 8 !important;
-    gap: 12px !important;
-    padding: 24px !important;
+    grid-column: span 8 ;
+    gap: 12px ;
+    padding: 24px ;
   }
   .stage-seven-content .stage-seven-container-right {
-    margin-top: 24px !important;
-    grid-column: span 8 !important;
-    padding: 24px !important;
+    margin-top: 24px ;
+    grid-column: span 8 ;
+    padding: 24px ;
   }
   .stage-seven-icon-input{
-    margin-top: 12px !important;
+    margin-top: 12px ;
   }
   .stage-seven-content .stage-seven-container-left .stage-seven-content-left-container .stage-seven-input {
     padding-left: 12px;
   }
   .stage-seven-container-right {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .stage-seven-container-right .stage-seven-right-container{
-    grid-column: span 3 !important;
+    grid-column: span 3 ;
   }
   .stage-seven-container-right .stage-seven-right-container .stage-seven-right-title {
-    margin-top: 80px !important;
-    padding: 24px !important;
+    margin-top: 80px ;
+    padding: 24px ;
   }
 
-
   .GetFeedbackContent .managementStageBlock {
-    margin-top: 64px !important;
+    margin-top: 64px ;
   }
   .GetFeedbackContent .managementStageBlock .actualStage, .GetFeedbackContent .managementStageBlock .lastStage {
     display: none;
   }
   .GetFeedbackContent .managementStageBlock .managementButtons {
     display: grid;
-    gap: 12px !important;
+    gap: 12px ;
     width: 100%;
   }
   .GetFeedbackContent .managementStageBlock .managementButtons .backStageButton, .GetFeedbackContent .managementStageBlock .managementButtons .nextStageButton {
-    padding: 28px 0 !important;
+    padding: 28px 0 ;
   }
   .GetFeedbackContent .PrivacyPolicy {
-    margin-top: 64px !important;
+    margin-top: 64px ;
   }
 
   // Creators
   .creatorsContent .creatorsLine .creatorsDescription {
-    margin-top: 24px !important;
+    margin-top: 24px ;
   }
   .creatorsContent .creatorsBlock {
-    margin-top: 48px !important;
+    margin-top: 48px ;
   }
   .creatorsContent .creatorsBlock .creator {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .creatorsContent .creatorsBlock .creator .creatorText {
-    margin-top: 32px !important;
+    margin-top: 32px ;
   }
   .creatorsContent .creatorsBlock .creator .creatorText .creatorPhrase {
-    margin-top: 16px !important;
+    margin-top: 16px ;
   }
   .creatorsContent .creatorsBlock .creator .creatorText .creatorVacation {
-    margin-top: 64px !important;
+    margin-top: 64px ;
   }
-
-
-
 
   //FAQ
   .FAQContent .FAQInfo {
-    grid-column: span 4 !important;
+    grid-column: span 4 ;
   }
   .FAQContent .FAQInfo .QuestionsCategories {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px !important;
-    margin-top: 32px !important;
-    padding: 32px !important;
+    gap: 12px ;
+    margin-top: 32px ;
+    padding: 32px ;
   }
   .FAQContent .FAQInfo .QuestionsCategories .category {
-    grid-column: span 2 !important;
-    padding: 24px 0 !important;
+    grid-column: span 2 ;
+    padding: 24px 0 ;
   }
   .FAQContent .FAQInfo .QuestionsCategories .category .categoryTitle {
     text-align: center;
   }
   .FAQContent .questions  {
     display: grid;
-    gap: 16px !important;
-    margin-top: 16px !important;
-    grid-column: span 4 !important;
+    gap: 16px ;
+    margin-top: 16px ;
+    grid-column: span 4 ;
   }
   .FAQContent .questions .questionBlock {
-    padding: 32px !important;
+    padding: 32px ;
   }
   .FAQContent .questions .questionBlock .questionText {
-    margin-top: 0 !important;
+    margin-top: 0 ;
   }
-
 
   //Footer
   .footerBlock {
     width: auto;
-    margin: 8px !important;
-    padding: 48px !important;
+    margin: 8px ;
+    padding: 48px ;
   }
-  .footerContent .socialLinks {
-    gap: 12px !important;
+  .footerContent .footerLeftBlock .socialLinks {
+    gap: 12px ;
+    margin-top: 48px ;
   }
-  .license {
-    margin-top: 16px !important;
+  .footerContent .footerLeftBlock .termsOfUse {
+    margin-top: 48px ;
+  }
+  .footerContent .footerLeftBlock .license {
+    margin-top: 16px ;
   }
 
   .footerContent .footerCenterBlock {
-    margin-top: 48px !important;
-    gap: 12px !important;
+    margin-top: 48px ;
+    gap: 12px ;
   }
 
   .footerPoints {
     display: grid;
-    gap: 16px !important;
+    gap: 16px ;
   }
   .footerContent .footerCenterBlock .addressLine {
-    display: grid !important;
+    margin-top: 48px ;
+    display: grid ;
     grid-template-columns: 1fr;
-    gap: 12px !important;
+    gap: 12px ;
 
   }
   .footerContent .footerCenterBlock .addressLine .address {
-    grid-column: span 1 !important;
-    padding: 16px !important;
+    grid-column: span 1 ;
+    padding: 16px ;
   }
   .footerContent .footerCenterBlock .addressLine .showInMap {
-    grid-column: span 1 !important;
-    padding: 16px !important;
+    grid-column: span 1 ;
+    padding: 16px ;
   }
   .footerContent .footerRightBlock .footerContacts {
-    gap: 12px !important;
+    gap: 12px ;
   }
   .footerContent .footerRightBlock .footerContacts .footerContact {
-    padding: 16px !important;
+    padding: 16px ;
   }
 
   * {
-    font-size: 10px !important;
+    font-size: 1rem !important;
   }
 
-  //Fonts
-
-  //main block
-  .headerMobile .text {
-    font-size: 20px !important;
-  }
-  .mainBlock .content .textLine .title {
-    font-size: 68px !important;
-  }
-  .mainBlock .content .textLine .description {
-    font-size: 14px !important;
-  }
-  .mainBlock .content .cards .card .cardLine .cardTitle {
-    font-size: 30px !important;
-  }
-
-
-  //all projects
-  .allProjectsContent .textLine .title {
-    font-size: 48px !important;
-  }
-  .allProjectsContent .textLine .description {
-    font-size: 14px !important;
-  }
-  .allProjects .block .blockContent .info .text .title {
-    font-size: 32px !important;
-  }
-  .allProjects .block .blockContent .info .text .description {
-    font-size: 24px !important;
-  }
-  .info .text {
-    font-size: 28px !important;
-  }
-  .table .tableLine .title, .table .tableLine .value {
-    font-size: 24px !important;
-  }
-
-  //calculator
-  .CalculatorContent .CalculatorInfo .CalculatorTitle {
-    font-size: 48px !important;
-  }
-  .CalculatorContent .CalculatorInfo .CalculatorDescription {
-    font-size: 14px !important;
-  }
-  .Calculator .CalculatorInput .CalculatorInputTitle {
-    font-size: 12px !important;
-  }
-  .Calculator .CalculatorCounter .CalculatorCounterTitle {
-    font-size: 12px !important;
-  }
-  .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryTitle {
-    font-size: 12px !important;
-  }
-  .Calculator .CalculatorCounter .CalculatorCounterBlock {
-    font-size: 28px !important;
-  }
-  .Calculator .CalculatorInput .CalculatorInputValue {
-    font-size: 28px !important;
-  }
-  .CalculatorInputFont {
-    font-size: 28px !important;
-  }
-  .Calculator .CalculatorCounter .CalculatorCounterValue {
-    font-size: 28px !important;
-  }
-  .Calculator .CalculatorSelectCategory .CalculatorSelectCategoryBlock .CalculatorCategory {
-    font-size: 28px !important;
-  }
-  .Calculator .GetResults {
-    font-size: 28px !important;
-  }
-
-  .CalculatorContent .CalculatorBlocks .AverageData .AverageDataLine .AverageDataTitle {
-    width: 400px;
-    font-size: 40px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .AverageData .AverageDataLine .AverageDataBanner {
-    font-size: 24px !important;
-    width: 300px;
-    height: 34px;
-  }
-  .DataBlank .BlankValue {
-    font-size: 18px !important;
-  }
-  .DataBlank .BlankException {
-    font-size: 20px !important;
-    top: auto !important;
-    bottom: 24px !important;
-    right: 24px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .AverageData .AverageMainData .AverageResults .AverageResultsTitle {
-    font-size: 24px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .AverageData .AverageMainData .AverageResults .AverageResultsValue {
-    font-size: 40px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .ResultsDataTitle {
-    font-size: 40px !important;
-  }
-  .Results .DataBlank .BlankTitle {
-    font-size: 20px !important;
-  }
-  .Results .DataBlank .BlankValue {
-    font-size: 34px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .GetSolution .GetSolutionTitle {
-    font-size: 20px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .GetSolution .InputMail .inputMailTitle {
-    font-size: 28px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .GetSolution .ButtonMail {
-    font-size: 28px !important;
-  }
-
-  .advantagesContent .description {
-    font-size: 16px !important;
-  }
-  .advantagesContent .title {
-    font-size: 48px !important;
-  }
-  .advantagesContent .selectCategoryBlock .category {
-    font-size: 24px !important;
-  }
-  .advantagesContent .advantages .advantage .advantageContent .advantageTitle {
-    font-size: 32px !important;
-    width: 350px !important;
-  }
-  .advantagesContent .advantages .advantage .advantageContent .advantageImg {
-    width: 72px !important;
-    height: 72px !important;
-  }
-  .advantagesContent .advantages .advantage .advantageContent .advantageDescription {
-    font-size: 12px !important;
-    line-height: 100% !important;
-  }
-
-
-  //about company
-  .aboutCompanyContent .title {
-    font-size: 48px !important;
-  }
-  .aboutCompanyContent .container .point .value {
-    font-size: 48px !important;
-  }
-  .aboutCompanyContent .container .point .metaData {
-    margin-left: 16px !important;
-
-    font-size: 32px !important;
-  }
-
-  .aboutCompanyContent .value-description {
-    font-size: 14px !important;
-  }
-  .aboutCompanyContent .button .text {
-    font-size: 28px !important;
-  }
-
-
-  //statistic
-  .statisticContent .leftContainer .title {
-    font-size: 48px !important;
-  }
-  .statisticContent .leftContainer .description {
-    font-size: 28px !important;
-  }
-
-  //select region
-  .regionsContent .regionsText .regionsTitle {
-    font-size: 48px !important;
-  }
-  .regionsContent .regionsText .regionsDescription {
-    font-size: 14px !important;
-  }
-  .regionsContent .regionContent .regionBlock .selectRegionBlock .selectRegionTitle {
-    font-size: 24px !important;
-  }
-  .regionsContent .regionContent .regionBlock .selectRegionBlock .regions .region {
-    padding: 12px 0 !important;
-    font-size: 28px !important;
-  }
-  .regionsContent .regionContent .regionBlock .regionInfoBlock .infoBlock .infoTitle {
-    font-size: 24px !important;
-  }
-  .regionsContent .title {
-    font-size: 28px !important;
-  }
-  .regionsContent .value {
-    font-size: 24px !important;
-  }
-  .DataContent .value {
-    font-size: 16px !important;
-  }
-  .infoBlockData .DataContent .title {
-    font-size: 28px !important;
-  }
-  .infoBlockData .DataContent .value {
-    font-size: 24px !important;
-  }
-  .regionsContent .regionContent .infoFirstBlock .infoBlockDataLine{
-    flex-wrap: wrap;
-  }
-  .regionsContent .regionContent .infoFirstBlock .infoBlockDataLine .infoBlockData {
-    width: 100%;
-  }
-  .GetFeedbackContent .description {
-    font-size: 16px !important;
-  }
-  .GetFeedbackContent .title {
-    font-size: 48px !important;
-  }
-  .stage-one-content .stage-one-title {
-    font-size: 20px !important;
-  }
-
-  .stage-two-content .stage-two-container .stage-two-title {
-    font-size: 28px !important;
-  }
-
-
-  .stage-one-content, .stage-two-content {
-    padding: 32px !important;
-    border: 2px solid var(--gray);
-    border-radius: 32px !important;
-  }
-
-  .stage-five-content .stage-five-title {
-    font-size: 24px !important;
-  }
-  .stage-five-content .stage-five-description {
-    font-size: 20px !important;
-  }
-  .stage-seven-content .stage-seven-container-left .stage-seven-content-left-container .stage-seven-title {
-    font-size: 24px !important;
-  }
-  .stage-six-content .stage-six-container {
-    font-size: 28px !important;
-  }
-  .stage-seven-content .stage-seven-container-left .stage-seven-content-left-container .stage-seven-input {
-    font-size: 24px !important;
-    padding-left: 20px !important;
-  }
-  .stage-seven-container-right .stage-seven-title {
-    margin-bottom: 12px !important;
-    font-size: 12px !important;
-  }
-  .stage-seven-container-right .stage-seven-right-container .stage-seven-right-title {
-    font-size: 32px !important;
-    width: 300px;
-  }
-  .stage-seven-container-right .stage-seven-right-container .stage-seven-right-icon {
-    margin-left: 24px !important;
-    margin-top: 24px !important;
-  }
-
-  .GetFeedbackContent .managementStageBlock .managementButtons .backStageButton, .GetFeedbackContent .managementStageBlock .managementButtons .nextStageButton {
-    font-size: 28px !important;
-    border-radius: 24px !important;
-  }
-
-  #AboutCompanyGetMoreButton {
-    border-radius: 24px !important;
-  }
-  .AverageData .DataBlank {
-    border-radius: 24px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .AverageData .AverageMainData .AverageResults {
-    border-radius: 24px !important;
-  }
-  .Results .DataBlank {
-    border-radius: 24px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .GetSolution .InputMail {
-    border-radius: 24px !important;
-  }
-  .CalculatorContent .CalculatorBlocks .Results .GetSolution .ButtonMail {
-    border-radius: 24px !important;
-  }
-  .mainBlock .button {
-    border-radius: 24px !important;
-  }
-  .GetFeedbackContent .PrivacyPolicy, .GetFeedbackContent span {
-    font-size: 12px !important;
-  }
-  .GetFeedbackContent .PrivacyPolicy br {
-    display: none;
-  }
-  .creatorsContent .creatorsLine .creatorsTitle {
-    font-size: 48px !important;
-  }
-  .creatorsContent .creatorsLine .creatorsDescription {
-    font-size: 13px !important;
-  }
-  .creatorsContent .creatorsBlock .creator .creatorText .creatorName {
-    font-size: 40px !important;
-  }
-  .creatorsContent .creatorsBlock .creator .creatorText .creatorPhrase {
-    font-size: 24px !important;
-  }
-  .creatorsContent .creatorsBlock .creator .creatorText .creatorVacation {
-    font-size: 24px !important;
-  }
-
-  .FAQContent .FAQInfo .FAQTitle {
-    font-size: 48px !important;
-  }
-  .FAQContent .FAQInfo .QuestionsCategories .category .categoryTitle {
-    font-size: 28px !important;
-  }
-  .FAQContent .questions .questionBlock .questionTitle {
-    font-size: 36px !important;
-    width: 450px;
-  }
-  .FAQContent .questions .questionBlock .questionText {
-    width: 590px;
-    font-size: 12px !important;
-  }
-  .footerContent .footerLeftBlock .title {
-    font-size: 48px !important;
-  }
-  .footerContent .footerLeftBlock br {
-    display: none;
-  }
-  .socialLink {
-    width: 88px !important;
-    height: 88px !important;
-  }
-
-  .footerBlock {
-    border-radius: 64px !important;
-  }
-
-  .termsOfUse {
-    font-size: 28px !important;
-  }
-  .license {
-    font-size: 28px !important;
-  }
-  .footerContent .footerCenterBlock .footerPoints .footerPoint {
-    font-size: 28px !important;
-  }
-  .footerCenterBlock {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footerContent .footerCenterBlock .addressLine {
-    grid-column: span 2 ;
-  }
-  .footerContent {
-    display: block !important;
-  }
-  .footerContent .footerCenterBlock .addressLine .address {
-    border-radius: 24px !important;
-    font-size: 28px !important;
-    padding: 36px !important;
-  }
-  .footerContent .footerCenterBlock .addressLine .showInMap {
-    border-radius: 24px !important;
-    display: none;
-    font-size: 28px !important;
-    padding: 36px !important;
-  }
-  .footerContent .footerRightBlock .footerContacts {
-    margin-top: 12px !important;
-    display: grid !important;
-    grid-template-columns: repeat(12, 1fr);
-  }
-  .footerContent .footerRightBlock .footerContacts .footerContact {
-    height: auto;
-    display: block;
-    position: relative;
-    border-radius: 24px !important;
-    font-size: 24px !important;
-    padding: 20px !important;
-  }
-
-  .footerContactTitle {
-    font-size: 16px !important;
-    color: var(--white);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%;
-  }
-  .footerContactMobile {
-    height: auto;
-    display: block;
-    position: relative;
-    border-radius: 24px !important;
-    font-size: 24px !important;
-    padding: 20px !important;
-    border: 2px solid rgba(245, 245, 245, 0.16);
-  }
-  .footerContactValue {
-    margin-top: 8px !important;
-    font-size: 25px !important;
-    color: var(--white);
-    font-style: normal;
-    font-weight: 600;
-    line-height: 140%;
-  }
-
-
-  .footerContact1 {
-    grid-column: span 7 !important ;
-  }
-  .footerContact2 {
-    grid-column: span 5 !important ;
-  }
-  .footerContent {
-    .line {
-      margin: 48px 0 !important;
-      background: var(--white-hover);
-      grid-column: span 2;
-    }
-  }
-}
-
-
-
-// Mobile Menu Fixed
-.menu {
-  display: none; /* Скрыто по умолчанию */
-}
-
-@media (max-width: 1000px) {
-  .getPresentation {
-    width: 100%;
-    border-radius: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--white);
-    font-size: 28px !important;
-    border: 1px solid var(--white-hover);
-  }
-  .mobile-menu-fixed {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 999;
-    padding: 16px !important;
-    box-sizing: border-box;
-  }
-
-  /* Градиент как псевдоэлемент */
-  .mobile-menu-fixed::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(18, 18, 22, 0.00) 0%, rgba(18, 18, 22, 0.08) 49.54%, rgba(18, 18, 22, 0.48) 100%);
-    pointer-events: none; /* Клики проходят сквозь градиент */
-    z-index: 1; /* Градиент поверх фона, но под кнопками */
-  }
-
-  .mobile-menu-content {
-    display: grid;
-    gap: 12px !important;
-    grid-template-columns: repeat(8, 1fr);
-    margin: 288px 52px 40px 52px !important;
-    width: 100%;
-    position: relative; /* Для корректного позиционирования кнопок */
-    z-index: 2; /* Кнопки выше градиента */
-  }
-
-  /* Общие стили для кнопок */
-  .mobile-menu-menu-button,
-  .mobile-menu-getFeedback-button {
-    font-weight: 500;
-    line-height: 140%;
-    gap: 16px !important;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    padding: 20px 36px !important;
-    border-radius: 24px;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    z-index: 2; /* Кнопки выше градиента */
-  }
-
-  /* Стили для кнопки меню */
-  .mobile-menu-menu-button {
-    grid-column: span 3;
-    border: 1px solid var(--white-hover);
-    background: var(--white-hover);
-    backdrop-filter: blur(6px);
-  }
-
-  /* Стили для кнопки обратной связи */
-  .mobile-menu-getFeedback-button {
-    grid-column: span 5;
-    border: 1px solid var(--primary);
-    background: var(--primary);
-  }
-
-  .mobile-menu-getFeedback-button-title {
-    width: auto;
-    font-size: 28px !important; /* 28px в rem */
-  }
-
-  .mobile-menu-button-title {
-    font-size: 28px !important; /* 28px в rem */
-  }
-  .menu {
-    transition: 0.5s ease;
-    border: 1px solid var(--primary);
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: fixed;
-    z-index: 999;
-    bottom: 0;
-    left: 0;
-  }
-  .mobile-open-menu-fixed {
-    pointer-events: auto;
-    position: fixed;
-    z-index: 1000000000;
-    border-radius: 32px 32px 0 0 !important;
-    bottom: 0;
-    width: 100%;
-    background: var(--white);
-  }
-  .mobile-open-menu-content {
-    padding: 40px !important;
-  }
-  .mobile-open-menu-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .mobile-open-menu-social-media {
-    display: flex;
-    gap: 12px !important;
-  }
-  .mobile-open-menu-line {
-    position: relative;
-    border-radius: 36px;
-    padding: 16px 16px 16px 32px !important;
-    border: 2px solid var(--gray);
-    background: var(--white);
-  }
-  .mobile-open-menu-dot {
-    transition: 0.3s ease;
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    width: 8px;
-    height: 8px;
-    background-color: var(--light-gray);
-    border-radius: 50%;
-  }
-
-  .mobile-open-menu-title {
-    color: var(--Light-Version-Text-Black, #121216);
-    font-size: 28px !important;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 104%; /* 16.64px */
-  }
-
-  .mobile-open-menu-title-line {
-
-    position: relative;
-    border-radius: 32px;
-    padding: 32px !important;
-    border: 2px solid var(--gray);
-    background: var(--white);
-  }
-  .mobile-open-menu-points {
-    display: grid;
-    gap: 12px !important;
-    flex-wrap: wrap;
-  }
-  .mobile-open-menu-address-line {
-    justify-content: space-between;
-    display: flex;
-    gap: 12px !important;
-    flex-wrap: wrap;
-    border-radius: 40px;
-    border: 2px solid var(--gray);
-    background: var(--white);
-    padding: 16px !important;
-  }
-  .mobile-open-menu-address-block {
-    width: 100%;
-    border-radius: 24px;
-    border: 2px solid var(--gray);
-    position: relative;
-    padding: 20px 20px 24px 24px !important;
-  }
-  .mobile-open-menu-address-subtitle {
-    font-size: 18px !important;
-    color: var(--Light-Version-Text-Dark-Gray, #4D4D4D);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 14px */
-  }
-  .mobile-open-menu-address-title {
-    margin-top: 8px !important;
-    font-size: 27px !important;
-    color: var(--Light-Version-Text-Black, #121216);
-    font-style: normal;
-    font-weight: 600;
-    line-height: 140%; /* 19.6px */
-  }
-
-  .mobile-open-menu-address-email {
-    width: 50%;
-    border-radius: 24px;
-    border: 2px solid var(--gray);
-    position: relative;
-    padding: 20px 20px 24px 24px !important;
-  }
-  .mobile-open-menu-address-phone {
-    width: 33%;
-    border-radius: 24px;
-    border: 2px solid var(--gray);
-    position: relative;
-    padding: 20px 20px 24px 24px !important;
-  }
-  .mobile-open-menu-control {
-    gap: 12px !important;
-    border-radius: 20px;
-    border: 2px solid var(--gray);
-    padding: 16px !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .mobile-open-menu-menu-button {
-    width: 33%;
-    font-weight: 500;
-    line-height: 140%;
-    gap: 16px !important;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--black);
-    padding: 20px 36px !important;
-    border-radius: 24px;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    z-index: 2; /* Кнопки выше градиента */
-    grid-column: span 5;
-    border: 2px solid var(--gray);
-    background: var(--gray);
-  }
-  .menu-active {
-    transition: 0.3s ease;
-    background: var(--primary);
-  }
-  .mobile-open-menu-svg-icon {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-  .termsOfUse {
-    margin-top: 0 !important;
-  }
-}
-
-input {
-  appearance: none; /* Отключает стандартные стили браузера */
-  -webkit-appearance: none; /* Для поддержки в Safari и других браузерах на WebKit */
-  -moz-appearance: none; /* Для поддержки в Firefox */
-  border: none; /* Убирает границу */
-  background: none; /* Убирает фон */
-  padding: 0; /* Убирает внутренние отступы */
-  margin: 0; /* Убирает внешние отступы */
-  font-family: inherit; /* Наследует шрифт */
-  font-size: inherit; /* Наследует размер шрифта */
-  color: var(--black); /* Наследует цвет текста */
-  outline: none; /* Убирает outline при фокусе */
 }
 
