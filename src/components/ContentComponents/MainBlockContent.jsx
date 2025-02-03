@@ -15,7 +15,7 @@ const CARDS_DATA = [
     {
         id: 1,
         icon: card1,
-        title: 'Найди объект своей мечты',
+        title: ['Найди объект ', window.innerWidth > 1200 ? <br/> : null, 'своей мечты'],
     },
     {
         id: 2,
@@ -30,7 +30,7 @@ const CARDS_DATA = [
     {
         id: 4,
         icon: card4,
-        title: 'Сдай свое жилье в аренду',
+        title: ['Сдай свое ', <br/> ,'жилье в аренду'],
     },
 ];
 
@@ -71,7 +71,7 @@ function MainBlockContent() {
                             Пхукет: недвижимость <br /> вашей мечты
                         </div>
                         <div className="description">
-                            Ищете дом мечты на Пхукете? Инвестиционную недвижимость? Заполните короткую форму – мы сделаем процесс покупки максимально простым и приятным!
+                            Ищете дом мечты на Пхукете? {window.innerWidth < 1200 ? <br/> : null} Инвестиционную {window.innerWidth > 1200 ? <br/> : null} недвижимость? Заполните {window.innerWidth < 1200 ? <br/> : null} короткую форму – мы сделаем {window.innerWidth > 1200 ? <br/> : null} процесс {window.innerWidth < 1200 ? <br/> : null} покупки максимально простым и приятным!
                         </div>
                     </div>
                     <div className="cards">

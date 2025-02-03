@@ -1,5 +1,6 @@
 import React from 'react';
 import {gsap} from "gsap";
+import {useNavigate} from "react-router-dom";
 function MobileMenuFixed(props) {
     const [isOpen, setIsOpen] = React.useState(false);
     const [selectedPoint, setSelectedPoint] = React.useState('none');
@@ -18,6 +19,9 @@ function MobileMenuFixed(props) {
             );
         }
     }, [isOpen]);
+
+    const navigate = useNavigate();
+
     return (
         <div style={isOpen ? {"backdrop-filter": "blur(10px)", "transition": "0.5s ease", "height": "100%"} : {"transition": "0.5s ease", "height": "auto"}} className="menu">
         <div className="mobile-menu-fixed">
@@ -40,7 +44,7 @@ function MobileMenuFixed(props) {
 
                 </div>
                 <div className={"mobile-menu-getFeedback-button"}>
-                    <a href={"#GetFeedbackMenuHook"}>
+                    <a onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/");}} href={"#GetFeedbackMenuHook"}>
                         <div className={"mobile-menu-getFeedback-button-title"}>Оставить заявку</div>
                     </a>
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20" fill="none">
@@ -138,31 +142,31 @@ function MobileMenuFixed(props) {
                     </div>
                     <div className={"line"}></div>
                     <div className={"mobile-open-menu-points"}>
-                        <a href={"#AllProjectsMenuHook"}>
+                        <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AllProjectsMenuHook"}>
                             <div onClick={() => {setSelectedPoint('Недвижимость')}} className={"mobile-open-menu-title-line"}>
                                 <div className={"mobile-open-menu-dot" + (selectedPoint === 'Недвижимость' ? ' menu-active' : '')}></div>
                                 <div className={"mobile-open-menu-title"}>Недвижимость</div>
                             </div>
                         </a>
-                        <a href={"#AdvantagesMenuHook"}>
+                        <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AdvantagesMenuHook"}>
                             <div onClick={() => {setSelectedPoint('Преимущества')}} className={"mobile-open-menu-title-line"}>
                                 <div className={"mobile-open-menu-dot" + (selectedPoint === 'Преимущества' ? ' menu-active' : '')}></div>
                                 <div className={"mobile-open-menu-title"}>Преимущества</div>
                             </div>
                         </a>
-                        <a href={"#AboutCompanyMenuHook"}>
+                        <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AboutCompanyMenuHook"}>
                             <div onClick={() => {setSelectedPoint('О нас')}} className={"mobile-open-menu-title-line"}>
                                 <div className={"mobile-open-menu-dot" + (selectedPoint === 'О нас' ? ' menu-active' : '')}></div>
                                 <div className={"mobile-open-menu-title"}>О нас</div>
                             </div>
                         </a>
-                        <a href={"#RegionsMenuHook"}>
+                        <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#RegionsMenuHook"}>
                             <div onClick={() => {setSelectedPoint('Районы')}} className={"mobile-open-menu-title-line"}>
                                 <div className={"mobile-open-menu-dot" + (selectedPoint === 'Районы' ? ' menu-active' : '')}></div>
                                 <div className={"mobile-open-menu-title"}>Районы</div>
                             </div>
                         </a>
-                        <a href={"#CreatorsMenuHook"}>
+                        <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#CreatorsMenuHook"}>
                             <div onClick={() => {setSelectedPoint('Основатели')}} className={"mobile-open-menu-title-line"}>
                                 <div className={"mobile-open-menu-dot" + (selectedPoint === 'Основатели' ? ' menu-active' : '')}></div>
                                 <div className={"mobile-open-menu-title"}>Основатели</div>
@@ -238,7 +242,7 @@ function MobileMenuFixed(props) {
 
                         </div>
                         <div className={"mobile-menu-getFeedback-button"}>
-                            <a href={"#GetFeedbackMenuHook"}>
+                            <a onClick={()=>{setIsOpen(false); gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#GetFeedbackMenuHook"}>
                                 <div className={"mobile-menu-getFeedback-button-title"}>Оставить заявку</div>
                             </a>
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"

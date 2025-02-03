@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { gsap } from "gsap";
 
 import stage_one_img1 from "../../assets/images/GetFeedbackMedia/stage_one_images/stage_one_img1.png";
 import stage_one_img2 from "../../assets/images/GetFeedbackMedia/stage_one_images/stage_one_img2.png";
@@ -312,9 +313,9 @@ const StageFiveComponent = ({ setStageCompleted, setActiveStageFiveValue, active
                 className={`anotherRegions stage-five-container`}
             >
                 <div className={"dot " + (activeStageFiveValue.includes('Остальные') ? 'active' : '')}></div>
-                <div className={"stage-five-title"}>Остальные</div>
-                <img alt={"region"} className={"stage-five-region"} src={region6} />
-                <div className={"stage-five-description"}>Поможем вам найти идеальное<br />решение для ваших инвестиций</div>
+                <div style={window.innerWidth < 1200 ? {"text-align": "center"}: null} className={"stage-five-title"}>Остальные</div>
+                <img style={window.innerWidth < 1200 ? {"display": "none"}: null} alt={"region"} className={"stage-five-region"} src={region6} />
+                <div style={window.innerWidth < 1200 ? {"display": "none"}: null} className={"stage-five-description"}>Поможем вам найти идеальное<br />решение для ваших инвестиций</div>
             </div>
         </div>
     );
@@ -340,76 +341,93 @@ const StageSixComponent = ({ setStageCompleted, setActiveStageSixValue, activeSt
 
     // Обработчик выбора региона
     const handleRegionClick = (region) => {
-        if (selectedRegions.includes(region)) {
-            // Если регион уже выбран, удаляем его
-            setSelectedRegions(selectedRegions.filter((r) => r !== region));
-        } else {
-            // Если регион не выбран, добавляем его
-            setSelectedRegions([...selectedRegions, region]);
-        }
+        setSelectedRegions((prev) =>
+            prev.includes(region) ? prev.filter((r) => r !== region) : [...prev, region]
+        );
     };
 
     // Формируем actual_regions на основе выбранных choosedRegions
     let actual_regions = [];
-    for (let i = 0; i < choosedRegions.length; i++) {
-        if (choosedRegions[i] === "Все районы") {
-            // Если выбран "Все районы", добавляем все регионы
-        } else {
-            // Иначе добавляем регионы из выбранной группы
-            actual_regions = actual_regions.concat(REGIONS_MORE_DATA[choosedRegions[i]]);
-        }
-    }
 
+    Object.keys(REGIONS_MORE_DATA).forEach((region) => {
+        if (choosedRegions.includes(region)) {
+            actual_regions = actual_regions.concat(REGIONS_MORE_DATA[region]);
+        }
+    });
     // Разделяем actual_regions на три части
     const partLength = Math.ceil(actual_regions.length / 3);
     const part1 = actual_regions.slice(0, partLength);
     const part2 = actual_regions.slice(partLength, partLength * 2);
     const part3 = actual_regions.slice(partLength * 2);
-
+    const isOdd = (arr) => arr.length % 2 !== 0;
     return (
-        <div className={"stage-six-content"}>
-            <div className={"stage-six-line"}>
-                {part1.map((item, i) => (
-                    <div
-                        className={`stage-six-container`}
-                        key={i}
-                        onClick={() => handleRegionClick(item)}
-                    >
-                        <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
-                        {item}
-                    </div>
+        window.innerWidth > 1200 ? (
+            <div className={"stage-six-content"}>
+                <div className={"stage-six-line"}>
+                    {part1.map((item, i) => (
+                        <div
+                            className={`stage-six-container`}
+                            key={i}
+                            onClick={() => handleRegionClick(item)}
+                        >
+                            <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
+                            {item}
+                        </div>
+                    ))}
+                </div>
+                <div className={"stage-six-line"}>
+                    {part2.map((item, i) => (
+                        <div
+                            className={`stage-six-container`}
+                            key={i}
+                            onClick={() => handleRegionClick(item)}
+                        >
+                            <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
+                            {item}
+                        </div>
+                    ))}
+                </div>
+                <div className={"stage-six-line"}>
+                    {part3.map((item, i) => (
+                        <div
+                            className={`stage-six-container`}
+                            key={i}
+                            onClick={() => handleRegionClick(item)}
+                        >
+                            <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
+                            {item}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ) : (
+            <div className={"stage-six-content"}>
+                {[part1, part2, part3].map((part, partIndex) => (
+                        part.map((item, i) => {
+                            // Проверка: длинное название ИЛИ последний элемент при нечетном числе
+                            const shouldSpan = item === "Royal Phuket Marine";
+
+                            return (
+                                <div
+                                    className="stage-six-container"
+                                    style={shouldSpan ? {"grid-column": "span 2"} : null}
+                                    key={i}
+                                    onClick={() => handleRegionClick(item)}
+                                >
+                                    <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
+                                    {item}
+                                </div>
+                            );
+                        })
                 ))}
             </div>
-            <div className={"stage-six-line"}>
-                {part2.map((item, i) => (
-                    <div
-                        className={`stage-six-container`}
-                        key={i}
-                        onClick={() => handleRegionClick(item)}
-                    >
-                        <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
-                        {item}
-                    </div>
-                ))}
-            </div>
-            <div className={"stage-six-line"}>
-                {part3.map((item, i) => (
-                    <div
-                        className={`stage-six-container`}
-                        key={i}
-                        onClick={() => handleRegionClick(item)}
-                    >
-                        <div className={"dot " + (selectedRegions.includes(item) ? "active" : "")}></div>
-                        {item}
-                    </div>
-                ))}
-            </div>
-        </div>
+
+        )
     );
 };
 
 // Основной компонент
-const StageSevenComponent = ({ setStageCompleted, setActiveStageSevenValue, activeStageSevenValue }) => {
+const StageSevenComponent = ({setStageCompleted, setActiveStageSevenValue, activeStageSevenValue}) => {
     // Обработчики для полей ввода
     const handleNameChange = (event) => {
         setActiveStageSevenValue(prev => ({
@@ -527,14 +545,14 @@ const StageSevenComponent = ({ setStageCompleted, setActiveStageSevenValue, acti
                 </div>
             </div>
             <div className={"stage-seven-container-right"}>
-                <div className={"stage-seven-title"}>Какой способ связи будет для вас наиболее удобен?</div>
+                <div className={"stage-seven-title"}>{window.innerWidth > 1200 ? "Какой способ связи будет для вас наиболее удобен?" : "Какой способ связи для вас наиболее удобен?"}</div>
                 <div
                     className={"stage-seven-right-container"}
                     onClick={() => handleContactMethodChange("phone")}
                 >
                     <div className={`dot ${activeStageSevenValue.typeOfContact === "phone" ? "active" : ""}`}></div>
                     <img src={stage_seven_phone} alt="phone" className={`stage-seven-right-icon ${activeStageSevenValue.typeOfContact === "phone" ? "icon-active" : ""}`}/>
-                    <div className={"stage-seven-right-title"}>По номеру<br/>телефона</div>
+                    <div className={"stage-seven-right-title"}>По номеру {window.innerWidth > 1200 ? <br/> : null}телефона</div>
                 </div>
                 <div
                     className={"stage-seven-right-container"}
@@ -542,7 +560,7 @@ const StageSevenComponent = ({ setStageCompleted, setActiveStageSevenValue, acti
                 >
                     <div className={`dot ${activeStageSevenValue.typeOfContact === "email" ? "active" : ""}`}></div>
                     <img src={stage_seven_email} alt="email" className={`stage-seven-right-icon ${activeStageSevenValue.typeOfContact === "email" ? "icon-active" : ""}`}/>
-                    <div className={"stage-seven-right-title"}>Электронным<br/>письмом</div>
+                    <div className={"stage-seven-right-title"}>Электронным {window.innerWidth > 1200 ? <br/> : null}письмом</div>
                 </div>
                 <div
                     className={"stage-seven-right-container"}
@@ -550,7 +568,7 @@ const StageSevenComponent = ({ setStageCompleted, setActiveStageSevenValue, acti
                 >
                     <div className={`dot ${activeStageSevenValue.typeOfContact === "messenger" ? "active" : ""}`}></div>
                     <img src={stage_seven_chat} alt="chat" className={`stage-seven-right-icon ${activeStageSevenValue.typeOfContact === "messenger" ? "icon-active" : ""}`}/>
-                    <div className={"stage-seven-right-title"}>Через<br/>мессенджеры</div>
+                    <div className={"stage-seven-right-title"}>Через {window.innerWidth > 1200 ? <br/> : null}мессенджеры</div>
                 </div>
             </div>
         </div>
@@ -559,9 +577,7 @@ const StageSevenComponent = ({ setStageCompleted, setActiveStageSevenValue, acti
 
 const ThanksForData = () => {
     return (
-        <div className="thanks-for-data-content">
-            <div className={"thanks-for-data-content-description"}>Мы свяжемся с Вами в ближайшее время</div>
-        </div>
+        <span></span>
     )
 }
 
@@ -653,27 +669,39 @@ function GetFeedbackContent(props) {
     ];
 
     const TITLES = [
-        "Какой тип недвижимости<br/>вы ищите?",
-        "Для какой цели приобретаете<br/>недвижимость?",
-        "Какой у вас бюджет<br/>в долларах США?",
-        "Когда вы планируете<br/>приобрести недвижимость?",
-        "Какие районы на Пхукете<br/>вы предпочитаете?",
-        "Какие районы на Пхукете<br/>вы предпочитаете?",
-        "Пожалуйста, укажите<br/>ваши данные",
-        "Спасибо, Ваша<br/>заявка успешно отправлена!"
+        window.innerWidth > 1200 ? "Какой тип недвижимости<br/>вы ищите?" : "Какой тип недвижимости<br/>вы ищете?" ,
+        window.innerWidth > 1200 ? "Для какой цели приобретаете<br/>недвижимость?" : "Для какой цели покупаете<br/>недвижимость?",
+        window.innerWidth > 1200 ? "Какой у вас бюджет<br/>в долларах США?": "Какой у вас бюджет<br/>в долларах США?",
+        window.innerWidth > 1200 ? "Когда вы планируете<br/>приобрести недвижимость?" : "Когда вы планируете<br/>купить недвижимость?",
+        window.innerWidth > 1200 ? "Какие районы на Пхукете<br/>вы предпочитаете?" : "Какие районы на Пхукете<br/>вы предпочитаете?",
+        window.innerWidth > 1200 ? "Какие районы на Пхукете<br/>вы предпочитаете?" : "Какие районы на Пхукете<br/>вы предпочитаете?",
+        window.innerWidth > 1200 ? "Пожалуйста, укажите<br/>ваши данные" : "Пожалуйста, укажите<br/>ваши данные",
+        window.innerWidth > 1200 ? "Ваша заявка принята, мы свяжемся <br/> с вами в ближайшее время" : "Заявка принята, мы скоро <br/> свяжемся с вами"
     ]
 
     // Обработчик для кнопки "Перейти дальше"
     const handleNextStage = () => {
         if (activeStage < STAGES.length) {
-            setActiveStage(activeStage + 1);
+            console.log(activeStageFiveValue)
+            // Если на 5 этапе выбран только "Patong", пропускаем 6 этап
+            if (activeStage === 5 && activeStageFiveValue.length === 1 && activeStageFiveValue[0] === "Патонг") {
+                setActiveStageSixValue(['Patong']);
+                setActiveStage(7);
+            } else {
+                setActiveStage(activeStage + 1);
+            }
         }
     };
 
     // Обработчик для кнопки "Вернуться назад"
     const handlePrevStage = () => {
         if (activeStage > 1 && activeStage < 8) {
-            setActiveStage(activeStage - 1);
+            // Если текущий этап — 7, и был пропущен 6 этап, возвращаемся на 5 этап
+            if (activeStage === 7 && activeStageFiveValue.length === 1 && activeStageFiveValue[0] === "Патонг") {
+                setActiveStage(5);
+            } else {
+                setActiveStage(activeStage - 1);
+            }
         }
     };
 
@@ -688,34 +716,70 @@ function GetFeedbackContent(props) {
         }
     }
 
+
+    useEffect(() => {
+        gsap.from(".getInfoBlock", {
+            opacity: 0,
+            y: -20,
+            duration: 1,
+        })
+    }, [activeStage])
+
     return (
-        <div id="GetFeedbackMenuHook" className="GetFeedbackContent">
+        <div id="GetFeedbackMenuHook" className="GetFeedbackContent" style={activeStage === 8 ? {"align-content": "center"} : null}>
             <div className="description">Оставить заявку</div>
             <div className="title" dangerouslySetInnerHTML={{ __html: TITLES[activeStage-1] }}></div>
-            <div className="getInfoBlock">
+            <div style={activeStage === 8 ? {"min-height": "0px", "transition": "0.3s ease"} : null} className="getInfoBlock">
                 {STAGES[activeStage - 1].component}
+                <div style={activeStage === 8 ? {"display": "none"} : null} className="line"></div>
+                {window.innerWidth <= 1200 ? (
+                    <div className="managementStageBlock" style={activeStage === 8 ? {"justify-content": "center", "gap": "16px"} : null}>
+                        <div className="actualStage">{"0" + (activeStage === 8 ? 8 : activeStage)}</div>
+                        <div style={activeStage === 8 ? {"grid-template-columns": "1fr"} : null} className="managementButtons">
+                            {/* Кнопка "Вернуться назад" активна начиная со второго этапа */}
+                            <div
+                                onClick={handlePrevStage}
+                                style={activeStage===8 ? {"display": 'none'} : null}
+                                className={`backStageButton ${activeStage > 1 && activeStage < 8 ? "activeButton" : ""}`}
+                            >
+                                Назад
+                            </div>
+                            {/* Кнопка "Перейти дальше" активна, если текущий этап завершен */}
+                            <div
+                                onClick={STAGES[activeStage - 1].isCompleted || activeStage === 8 ? (activeStage === 7 ? ()=>{handleSubmit(); setActiveStage(activeStage+1);} : activeStage === 8 ? ()=> {setActiveStage(1)} : handleNextStage) : null}
+                                className={`nextStageButton ${STAGES[activeStage - 1].isCompleted ? "activeButton" : ""}`}
+                            >
+                                {activeStage === 7 ? "Отправить заявку" : activeStage === 8 ? "Заполнить заявку повторно" : "Дальше"}
+                            </div>
+                        </div>
+                        <div className="lastStage">07</div>
+                    </div>
+                ) : null}
             </div>
-            <div className="managementStageBlock">
-                <div className="actualStage">{"0" + (activeStage === 8 ? 7 : activeStage)}</div>
-                <div className="managementButtons">
-                    {/* Кнопка "Вернуться назад" активна начиная со второго этапа */}
-                    <div
-                        onClick={handlePrevStage}
-                        className={`backStageButton ${activeStage > 1 && activeStage < 8 ? "activeButton" : ""}`}
-                    >
-                        Вернуться назад
+            {window.innerWidth > 1200 ? (
+                <div className="managementStageBlock" style={activeStage === 8 ? {"justify-content": "center", "gap": "16px"} : null}>
+                    <div className="actualStage">{"0" + (activeStage === 8 ? 8 : activeStage)}</div>
+                    <div style={activeStage === 8 ? {"grid-template-columns": "1fr"} : null} className="managementButtons">
+                        {/* Кнопка "Вернуться назад" активна начиная со второго этапа */}
+                        <div
+                            onClick={handlePrevStage}
+                            style={activeStage===8 ? {"display": 'none'} : {"display": 'inline-flex'}}
+                            className={`backStageButton ${activeStage > 1 && activeStage < 8 ? "activeButton" : ""}`}
+                        >
+                            Вернуться назад
+                        </div>
+                        {/* Кнопка "Перейти дальше" активна, если текущий этап завершен */}
+                        <div
+                            onClick={STAGES[activeStage - 1].isCompleted || activeStage === 8 ? (activeStage === 7 ? ()=>{handleSubmit(); setActiveStage(activeStage+1);} : activeStage === 8 ? ()=> {setActiveStage(1)} : handleNextStage) : null}
+                            className={`nextStageButton ${STAGES[activeStage - 1].isCompleted ? "activeButton" : ""}`}
+                        >
+                            {activeStage === 7 ? "Отправить заявку" : activeStage === 8 ? "Заполнить заявку повторно" : "Перейти дальше"}
+                        </div>
                     </div>
-                    {/* Кнопка "Перейти дальше" активна, если текущий этап завершен */}
-                    <div
-                        onClick={STAGES[activeStage - 1].isCompleted ? (activeStage === 7 ? ()=>{handleSubmit(); setActiveStage(activeStage+1);} : handleNextStage) : null}
-                        className={`nextStageButton ${STAGES[activeStage - 1].isCompleted ? "activeButton" : ""}`}
-                    >
-                        {activeStage === 7 ? "Отправить заявку" : "Перейти дальше"}
-                    </div>
+                    <div className="lastStage">08</div>
                 </div>
-                <div className="lastStage">07</div>
-            </div>
-            <div className="PrivacyPolicy">
+            ) : null}
+            <div style={activeStage===8 ? {"display": "none"} : null} className="PrivacyPolicy">
                 Заполняя форму обратной связи, вы подтверждаете свое согласие<br/>
                 на <span className={"getFeedbackLink"}>обработку персональных данных</span> и получение рекламных рассылок
             </div>

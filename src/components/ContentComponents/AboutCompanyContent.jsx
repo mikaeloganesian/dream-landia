@@ -11,7 +11,7 @@ const statsData = [
 ];
 
 AboutCompanyContent.defaultProps = {
-    title: ["Дома, в которых хочется жить. Компания, в которой хочется работать"],
+    title: ["Ваш надежный партнер в недвижимости, готовый помочь в любых вопросах"],
     description: 'О компании',
     buttonText: 'Подробнее',
 };
@@ -32,7 +32,7 @@ function AboutCompanyContent({ title, description, buttonText }) {
                         <div key={index} className="point">
                             <div className="value">
                                 {stat.value}
-                                <span className="metaData">{stat.metaData}</span>
+                                <span id={"metadata"+index} className="metaData">{stat.metaData}</span>
                             </div>
                             <div className="line"></div>
                             <div className="value-description">{stat.description}</div>

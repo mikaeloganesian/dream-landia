@@ -6,7 +6,7 @@ function CreatorsContent(props) {
         <div id="CreatorsMenuHook" className="creatorsContent">
             <div className="creatorsLine">
                 <div className="creatorsTitle">Послание от<br/>основателей</div>
-                <div className="creatorsDescription">Наши основатели расскажут, почему клиенты доверяют нам и выбирают именно нашу компанию. Узнайте о ценностях, которые лежат в основе нашего успеха, и о том, что делает нас уникальными</div>
+                <div className="creatorsDescription">Наши основатели расскажут, почему клиенты доверяют нам и {window.innerWidth > 1000 ? <br/> : null}выбирают именно нашу компанию. Узнайте о ценностях, которые {window.innerWidth > 1000 ? <br/> : null}лежат в основе нашего успеха, и о том, что делает нас уникальными</div>
             </div>
             <div className="creatorsBlock">
                 <div className="creator">
@@ -25,8 +25,7 @@ function CreatorsContent(props) {
                         <div className="creatorName">Илья Федоренко</div>
                         <div className="creatorVacation">Сооснователь компании</div>
                         <div className="line"></div>
-                        <div className="creatorPhrase">В основе нашей работы лежит тайское гостеприимство: мы стремимся
-                            создать уникальный клиентский опыт, наполненный заботой и вниманием
+                        <div className="creatorPhrase">В основе нашей работы лежит {window.innerWidth < 1200 ? <br/> : null} тайское гостеприимство: мы стремимся {window.innerWidth < 1200 ? <br/> : null}создать уникальный клиентский опыт, наполненный заботой и вниманием
                         </div>
                     </div>
                     <img className="creatorImage" src={secondCreator} alt="firstCreator"/>

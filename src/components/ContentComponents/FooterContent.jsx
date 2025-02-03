@@ -2,8 +2,13 @@ import telegramIcon from "../../assets/images/socialLinks/telegram.png";
 import mailIcon from "../../assets/images/socialLinks/mail.png";
 import whatsupIcon from "../../assets/images/socialLinks/whatsup.png";
 import mapIcon from "../../assets/images/socialLinks/map.png";
+import {useNavigate} from "react-router-dom";
+import {gsap} from "gsap";
+
 
 function FooterContent() {
+    const navigate = useNavigate();
+
     return (
         <div className="footerBlock">
             <div className="footerContent">
@@ -16,16 +21,18 @@ function FooterContent() {
                             <img src={whatsupIcon} alt="telegram" className="socialLink"/>
                         </div>
                     ) : null}
-                    {window.innerWidth > 1000 ? (<div className="termsOfUse">Политика конфиденциальности</div>) :
-                        null}
-                    {window.innerWidth > 1000 ? (<div className="license">© 2025 Dream Landia</div>) : null}
+                    {window.innerWidth > 1000 ? (
+                            <div onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/privacy-policy"); }} className="termsOfUse">Политика конфиденциальности</div>
+                            ) :
+                            null}
+                            {window.innerWidth > 1000 ? (<div className="license">© 2025 Dream Landia</div>) : null}
                 </div>
                 <div className="footerCenterBlock">
                 <div className="footerPoints">
-                        <a href={"#AllProjectsMenuHook"}><div className="footerPoint">Недвижимость</div></a>
-                        <a href={"#AdvantagesMenuHook"}><div className="footerPoint">Преимущества</div></a>
-                        <a href={"#AboutCompanyMenuHook"}><div className="footerPoint">О компании</div></a>
-                        <a href={"#CreatorsMenuHook"}><div className="footerPoint">Основатели</div></a>
+                        <a onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AllProjectsMenuHook"}><div className="footerPoint">Недвижимость</div></a>
+                        <a onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AdvantagesMenuHook"}><div className="footerPoint">Преимущества</div></a>
+                        <a onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#AboutCompanyMenuHook"}><div className="footerPoint">О компании</div></a>
+                        <a onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} href={"#CreatorsMenuHook"}><div className="footerPoint">Основатели</div></a>
                     </div>
                     {window.innerWidth <= 1000 ? (<div className={"line"}></div>) : null }
                     <div className="addressLine">
@@ -53,8 +60,7 @@ function FooterContent() {
                     </div>
                 </div>
                 <div className="footerRightBlock">
-                    <a href={"#MainBlockMenuHook"}>
-                        <svg className="FooterLogo" width="242" height="88" viewBox="0 0 242 88" fill="none"
+                        <svg onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/"); }} className="FooterLogo" width="242" height="88" viewBox="0 0 242 88" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_1510_707)">
                                 <path
@@ -96,7 +102,7 @@ function FooterContent() {
                                 <rect width="242" height="88" fill="white"/>
                             </clipPath>
                         </defs>
-                    </svg></a>
+                    </svg>
                     {window.innerWidth <= 1000 ? (
                         <div className="footerContacts">
                             <div className="footerContact footerContact1">
@@ -152,7 +158,7 @@ function FooterContent() {
                         </div>
                     ) : null}
                     {window.innerWidth <= 1000 ? (<div className={"line"}></div>) : null}
-                    {window.innerWidth <= 1000 ? (<div className="termsOfUse">Политика конфиденциальности</div>) : null}
+                    {window.innerWidth <= 1000 ? (<div onClick={()=>{gsap.globalTimeline.clear(); gsap.killTweensOf("*"); navigate("/privacy-policy"); }} className="termsOfUse">Политика конфиденциальности</div>) : null}
                     {window.innerWidth <= 1000 ? (<div className="license">© 2025 Dream Landia</div>) : null}
                 </div>
             </div>

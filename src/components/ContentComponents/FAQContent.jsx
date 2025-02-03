@@ -6,14 +6,26 @@
 
  function FAQContent() {
      const [activeCategory, setActiveCategory] = useState(0);
-     const [activeQuestion, setActiveQuestion] = useState(null);
+     const [activeQuestion, setActiveQuestion] = useState(0);
      const questionRefs = useRef([]);
+
+     useEffect(() => {
+         // Открываем первый вопрос анимацией после рендера
+         if (questionRefs.current[0]) {
+             gsap.to(questionRefs.current[0], {
+                 height: "auto",
+                 marginTop: window.innerWidth > 1200 ? "12px" : "32px",
+                 duration: 0.3
+             });
+         }
+     }, []);
 
      const toggleQuestion = (index) => {
          if (activeQuestion === index) {
              // Закрытие блока
              gsap.to(questionRefs.current[index], {
                  height: 0,
+                 "margin-top": "0px",
                  duration: 0.3,
                  onComplete: () => setActiveQuestion(null),
              });
@@ -22,6 +34,7 @@
              if (activeQuestion !== null) {
                  // Закрываем текущий открытый блок
                  gsap.to(questionRefs.current[activeQuestion], {
+                     "margin-top": "0px",
                      height: 0,
                      duration: 0.3,
                  });
@@ -29,8 +42,8 @@
              setActiveQuestion(index);
              gsap.fromTo(
                  questionRefs.current[index],
-                 { height: 0 },
-                 { height: "auto", duration: 0.3 }
+                 { height: 0, marginTop: "0px", },
+                 { height: "auto", marginTop: window.innerWidth > 1200 ? "12px" : "32px", duration: 0.3 }
              );
          }
      };
@@ -38,7 +51,7 @@
      return (
          <div className="FAQContent">
              <div className="FAQInfo">
-                 <div className="FAQTitle">Остались<br/>вопросы?</div>
+                 <div className="FAQTitle">Остались{window.innerWidth > 1200 ? <br/> : null} вопросы?</div>
                  <div className="QuestionsCategories">
                      <div onClick={() => setActiveCategory(0)} className="category">
                          <div className={"dot " + (activeCategory === 0 ? "active" : "")}></div>

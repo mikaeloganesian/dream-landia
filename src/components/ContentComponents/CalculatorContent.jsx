@@ -5,9 +5,9 @@ import {useState, useEffect, useRef} from "react";
 import {sendMessage} from "../../api/telegram";
 import {gsap} from "gsap";
 
-function DataBlank({ columnMode, title, value, needException }) {
+function DataBlank({ columnMode, title, value, needException, id }) {
     return (
-        <div style={columnMode === 1 ? { "grid-column": "span 1" } : { "grid-column": "span 2" }} className="DataBlank">
+        <div id={id} style={columnMode === 1 ? { "grid-column": "span 1" } : { "grid-column": "span 2" }} className="DataBlank">
             {needException ? (<div className="BlankException">* Включены<br />в управленческие</div>) : null}
             <div className="BlankTitle">{title}</div>
             <div className="BlankValue">{value}</div>
@@ -20,7 +20,8 @@ function CalculatorContent(props) {
     const [selectedRegion, setSelectedRegion] = useState('Юг');
     const [selectedTypeOfRoom, setSelectedTypeOfRoom] = useState('Вилла');
     const [selectedCategoryOfRoom, setSelectedCategoryOfRoom] = useState('Премиум');
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("250000$");
+    const[showPopup, setShowPopup] = useState();
 
     const handleInputChange = (e) => {
         const numericValue = e.target.value.replace(/[^0-9]/g, '');
@@ -59,7 +60,7 @@ function CalculatorContent(props) {
     const [formattedReturnOnInvestment, setFormattedReturnOnInvestment] = useState("");
 
     const [isCalculated, setIsCalculated] = useState(false);
-    const [isReduced, setIsReduced] = useState(true);
+    const [isReduced, setIsReduced] = useState(false);
     const [countOfCalc,setCountOfCalc] = useState(0);
 
     const animRef1 = useRef(null);
@@ -101,64 +102,121 @@ function CalculatorContent(props) {
         const typeFactor = selectedTypeOfRoom === 'Вилла' ? 1 : 0.9;
         const categoryFactor = selectedCategoryOfRoom === 'Бюджетная' ? 0.7 : selectedCategoryOfRoom === 'Средняя' ? 0.8 : selectedCategoryOfRoom === 'Премиум' ? 1 : 1.2;
 
+
+        // value - стоимость недвижимости
+        // roomFactor - количество комнат
+        // selectedRegion - выбранный регион ( Юг, Патонг, Центр или Север )
+        // selectedTypeOfRoom - тип недвижимости ( Вилла или апартамент )
+        // selectedCategoryOfRoom - категория недвижимости ( Бюджетная, Средняя, Премиум или Люкс )
+
+
+        let profitabilityMap = {}
+        if (!isReduced) {
+            profitabilityMap = {
+                'Юг-Вилла-Средняя': 0.1,
+                'Юг-Вилла-Бюджетная': 0.1,
+                'Юг-Вилла-Премиум': 0.1,
+                'Юг-Вилла-Люкс': 0.1,
+                'Юг-Апартамент-Средняя': 0.1,
+                'Юг-Апартамент-Бюджетная': 0.1,
+                'Юг-Апартамент-Премиум': 0.1,
+                'Юг-Апартамент-Люкс': 0.1,
+                'Патонг-Вилла-Средняя': 0.09,
+                'Патонг-Вилла-Бюджетная': 0.09,
+                'Патонг-Вилла-Премиум': 0.09,
+                'Патонг-Вилла-Люкс': 0.09,
+                'Патонг-Апартамент-Средняя': 0.09,
+                'Патонг-Апартамент-Бюджетная': 0.09,
+                'Патонг-Апартамент-Премиум': 0.09,
+                'Патонг-Апартамент-Люкс': 0.09,
+                'Центр-Вилла-Средняя': 0.09,
+                'Центр-Вилла-Бюджетная': 0.09,
+                'Центр-Вилла-Премиум': 0.09,
+                'Центр-Вилла-Люкс': 0.09,
+                'Центр-Апартамент-Средняя': 0.09,
+                'Центр-Апартамент-Бюджетная': 0.09,
+                'Центр-Апартамент-Премиум': 0.09,
+                'Центр-Апартамент-Люкс': 0.09,
+                'Север-Вилла-Средняя': 0.09,
+                'Север-Вилла-Бюджетная': 0.09,
+                'Север-Вилла-Премиум': 0.09,
+                'Север-Вилла-Люкс': 0.09,
+                'Север-Апартамент-Средняя': 0.09,
+                'Север-Апартамент-Бюджетная': 0.09,
+                'Север-Апартамент-Премиум': 0.09,
+                'Север-Апартамент-Люкс': 0.09,
+            };
+        } else {
+            profitabilityMap = {
+                'Юг-Вилла-Средняя': 0.07,
+                'Юг-Вилла-Бюджетная': 0.07,
+                'Юг-Вилла-Премиум': 0.07,
+                'Юг-Вилла-Люкс': 0.07,
+                'Юг-Апартамент-Средняя': 0.07,
+                'Юг-Апартамент-Бюджетная': 0.07,
+                'Юг-Апартамент-Премиум': 0.07,
+                'Юг-Апартамент-Люкс': 0.07,
+                'Патонг-Вилла-Средняя': 0.06,
+                'Патонг-Вилла-Бюджетная': 0.06,
+                'Патонг-Вилла-Премиум': 0.06,
+                'Патонг-Вилла-Люкс': 0.06,
+                'Патонг-Апартамент-Средняя': 0.06,
+                'Патонг-Апартамент-Бюджетная': 0.06,
+                'Патонг-Апартамент-Премиум': 0.06,
+                'Патонг-Апартамент-Люкс': 0.06,
+                'Центр-Вилла-Средняя': 0.06,
+                'Центр-Вилла-Бюджетная': 0.06,
+                'Центр-Вилла-Премиум': 0.06,
+                'Центр-Вилла-Люкс': 0.06,
+                'Центр-Апартамент-Средняя': 0.06,
+                'Центр-Апартамент-Бюджетная': 0.06,
+                'Центр-Апартамент-Премиум': 0.06,
+                'Центр-Апартамент-Люкс': 0.06,
+                'Север-Вилла-Средняя': 0.06,
+                'Север-Вилла-Бюджетная': 0.06,
+                'Север-Вилла-Премиум': 0.06,
+                'Север-Вилла-Люкс': 0.06,
+                'Север-Апартамент-Средняя': 0.06,
+                'Север-Апартамент-Бюджетная': 0.06,
+                'Север-Апартамент-Премиум': 0.06,
+                'Север-Апартамент-Люкс': 0.06,
+            };
+        }
+
+        const key = `${selectedRegion}-${selectedTypeOfRoom}-${selectedCategoryOfRoom}`;
+
+
+
+        const baseProfitability = profitabilityMap[key] || 0; // 0 - значение по умолчанию
+
         // Базовые значения
-        const baseADR = 98;
-        const baseOccupancyRate = 81;
-        const baseGrossIncome = 28974;
-        const baseRemuneration = 5795;
-        const baseManagementFees = 5795;
-        const baseOperatingExpenses = 5215;
-        const baseIncomeFromRealEstate = 18551;
-        const baseProfitability = 7.2;
-        const baseROI = 14.2;
+        const baseIncomeFromRealEstate = parseFloat(value.replace("$", "")) * baseProfitability;
+        const baseOccupancyRate = isReduced ? (selectedRegion === 'Юг' ? 0.75 : 0.7) : (selectedRegion === 'Юг' ? 0.9 : 0.85);
+        const baseGrossIncome = baseIncomeFromRealEstate * 1.3;
+        const baseManagementFees = 0.3 * baseGrossIncome;
+        const baseOperatingExpenses = 0.2 * baseGrossIncome;
+        const baseADR = baseGrossIncome / (Math.floor(365*baseOccupancyRate));
+        const baseROI = parseFloat(Math.floor(parseFloat(value.replace("$", ""))/baseIncomeFromRealEstate).toFixed(1));
 
 
+
+        console.log(baseProfitability);
+        console.log(baseIncomeFromRealEstate);
+        console.log(baseOccupancyRate);
+        console.log(baseGrossIncome);
+        console.log(baseOperatingExpenses);
+        console.log(baseADR);
+        console.log(baseROI);
 
         // Применяем уменьшение на 20%, если isReduced === true
-        if (isReduced) {
-            const adrValue = Math.round(categoryFactor * regionFactor * typeFactor * baseADR * 0.8);
-            const occupancyRate = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseOccupancyRate * 0.8);
-            const grossIncome = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseGrossIncome * 0.8);
-            const remuneration = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseRemuneration * 0.8);
-            const managementFees = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseManagementFees * 0.8);
-            const operatingExpenses = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseOperatingExpenses * 0.8);
-            const incomeFromRealEstate = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseIncomeFromRealEstate * 0.8);
-            const profitability = parseFloat((parseFloat((value === "" ? 1 : value.replace("$", "")/250000).toFixed(2))*roomFactor * categoryFactor * regionFactor * baseProfitability * 0.8).toFixed(1));
-            const roi = parseFloat(value === "" ? 1 : (value.replace("$", "")/250000).toFixed(2))*baseROI / (roomFactor * categoryFactor * regionFactor * typeFactor) * 1.25; // Увеличиваем ROI на 25%, если значения уменьшены на 20%
-            const formattedROI = formatAge(roi);
-
-            setADR(adrValue);
-            setAverageOccupancyRate(occupancyRate);
-            setAnnualGrossIncome(grossIncome);
-            setAnnualRemuneration(remuneration);
-            setAnnualManagementFees(managementFees);
-            setAnnualOperatingExpenses(operatingExpenses);
-            setAnnualIncomeFromRealEstate(incomeFromRealEstate);
-            setProfitabilityOnInvestment(profitability);
-            setFormattedReturnOnInvestment(formattedROI);
-        }
-        else {
-            const adrValue = Math.round(categoryFactor * regionFactor * typeFactor * baseADR);
-            const occupancyRate = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseOccupancyRate);
-            const grossIncome = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseGrossIncome);
-            const remuneration = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseRemuneration);
-            const managementFees = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseManagementFees);
-            const operatingExpenses = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseOperatingExpenses);
-            const incomeFromRealEstate = Math.round(roomFactor * categoryFactor * regionFactor * typeFactor * baseIncomeFromRealEstate);
-            const profitability = parseFloat((parseFloat((value === "" ? 1 : value.replace("$", "")/250000).toFixed(2))*roomFactor * categoryFactor * regionFactor * baseProfitability).toFixed(1));
-            const roi = parseFloat(value === "" ? 1 : (value.replace("$", "")/250000).toFixed(2))*baseROI / (roomFactor * categoryFactor * regionFactor * typeFactor); // Увеличиваем ROI на 25%, если значения уменьшены на 20%
-            const formattedROI = formatAge(roi);
-
-            setADR(adrValue);
-            setAverageOccupancyRate(occupancyRate);
-            setAnnualGrossIncome(grossIncome);
-            setAnnualRemuneration(remuneration);
-            setAnnualManagementFees(managementFees);
-            setAnnualOperatingExpenses(operatingExpenses);
-            setAnnualIncomeFromRealEstate(incomeFromRealEstate);
-            setProfitabilityOnInvestment(profitability);
-            setFormattedReturnOnInvestment(formattedROI);
-        }
+        setADR(Math.round(baseADR));
+        setAverageOccupancyRate(Math.round(baseOccupancyRate*100));
+        setAnnualGrossIncome(Math.round(baseGrossIncome));
+        setAnnualManagementFees(Math.round(baseManagementFees));
+        setAnnualOperatingExpenses(Math.round(baseOperatingExpenses));
+        setAnnualIncomeFromRealEstate(Math.round(baseIncomeFromRealEstate));
+        setProfitabilityOnInvestment((baseProfitability*100).toFixed(1));
+        setFormattedReturnOnInvestment(formatAge(baseROI));
 
     };
 
@@ -204,16 +262,35 @@ function CalculatorContent(props) {
         gsap.from([animRef1.current, animRef2.current], {
             opacity: 0,
             y: -60,
-            duration: 1,
+            duration: 2,
             stagger: 0.5,
         });
     }, [isReduced, countOfCalc]);
 
+
+    useEffect(() => {
+        if (showPopup) {
+            gsap.to(".pop-up-content", {
+                translateY: 0,
+                duration: 1.2,
+                ease: "power3.out",
+            });
+            setTimeout(() => {
+                gsap.to(".pop-up-content", {
+                    translateY: -200,
+                    duration: 1.2,
+                    ease: "power3.out",
+                });
+            }, 5000);
+        }
+    }, [showPopup]);
+
+
     return (
         <div id="CalculatorMenuHook" className="CalculatorContent">
             <div className="CalculatorInfo">
-                <div className="CalculatorTitle">Рассчитайте доход от вашей недвижимости</div>
-                <div className="CalculatorDescription">Мы поможем вам найти идеальную недвижимость на островах, организовать комфортный отдых и получать пассивный доход от аренды</div>
+                <div className="CalculatorTitle">Рассчитайте доход от {window.innerWidth > 1000 ? <br/> : null}вашей недвижимости</div>
+                <div className="CalculatorDescription">Мы поможем вам найти идеальную недвижимость {window.innerWidth > 1000 ? <br/> : null}на островах, организовать комфортный отдых {window.innerWidth > 1000 ? <br/> : null}и получать пассивный доход от аренды</div>
             </div>
             <div className="CalculatorBlocks">
                 <div className="Calculator">
@@ -270,15 +347,14 @@ function CalculatorContent(props) {
                 <div ref={animRef1} className="AverageData">
                     <div className="AverageDataLine">
                         <span className="AverageDataTitle">Средние показатели</span>
-                        <span onClick={()=> {setIsReduced(!isReduced)}} className="AverageDataBanner">{isReduced ? "Базовые показатели" : "Лучшие показатели"}</span>
+                        <span onClick={()=> {setIsReduced(!isReduced)}} className="AverageDataBanner">{isReduced ? "Лучшие показатели" : "Базовые показатели"}</span>
                     </div>
                     <div className="AverageMainData">
-                        <DataBlank columnMode={1} title={window.innerWidth > 780 ? "Средняя суточная ставка (ADR)" : "Средняя суточная ставка"} value={ADR + " $"} />
-                        <DataBlank columnMode={1} title={"Средняя заполняемость"} value={averageOccupancyRate + " %"} />
-                        <DataBlank columnMode={1} title={"Годовой валовой доход"} value={annualGrossIncome + " $"} />
-                        <DataBlank columnMode={1} title={"Годовое вознаграждение"} value={annualRemuneration + " $"} />
-                        <DataBlank columnMode={2} title={"Годовые управленческие сборы"} value={annualManagementFees + " $"} />
-                        <DataBlank columnMode={2} title={"Ежегодные операционные расходы"} value={annualOperatingExpenses + " $"} needException={true} />
+                        <DataBlank id={"DataBlank1"} columnMode={1} title={window.innerWidth > 780 ? "Средняя суточная ставка (ADR)" : "Средняя суточная ставка"} value={ADR + " $"} />
+                        <DataBlank id={"DataBlank2"} columnMode={1} title={"Средняя заполняемость"} value={averageOccupancyRate + " %"} />
+                        <DataBlank id={"DataBlank3"} columnMode={1} title={"Годовой валовой доход"} value={annualGrossIncome + " $"} />
+                        <DataBlank id={"DataBlank4"} columnMode={1} title={"Годовые управленческие сборы"} value={annualManagementFees + " $"} />
+                        <DataBlank id={"DataBlank5"} columnMode={2} title={"Ежегодные операционные расходы"} value={annualOperatingExpenses + " $"} needException={true} />
                         <div className="AverageResults">
                             <div className="AverageResultsTitle">Годовой доход<br />от недвижимости</div>
                             <div className="AverageResultsValue">{annualIncomeFromRealEstate + " $"}</div>
@@ -297,7 +373,7 @@ function CalculatorContent(props) {
                             <input placeholder={"youremail@gmail.com"} value={email} onChange={handleInputMailChange} className="inputMailTitle" />
                             <img className="MailIcon" src={emailIcon} alt={"send"} />
                         </div>
-                        <a onClick={isValidEmail ? handleSubmit : null} className={"ButtonMail " + (isValidEmail ? 'active' : '')}>Получить предложение</a>
+                        <a onClick={isValidEmail ? ()=>{handleSubmit(); setShowPopup(1)} : null} className={"ButtonMail " + (isValidEmail ? 'active' : '')}>Получить предложение</a>
                     </div>
                 </div>
             </div>

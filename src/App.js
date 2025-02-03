@@ -17,34 +17,37 @@ import FAQContent from "./components/ContentComponents/FAQContent";
 import FooterContent from "./components/ContentComponents/FooterContent";
 import CalculatorContent from "./components/ContentComponents/CalculatorContent";
 import GetFeedbackContent from "./components/ContentComponents/GetFeedbackContent";
+import PopUp from "./components/PopUp";
 
 function App() {
     // Регистрируем плагин ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         // Находим все блоки с классом .animate-block
         const blocks = gsap.utils.toArray('.animate-block');
 
-        // Анимация для каждого блока
-        blocks.forEach((block) => {
-            gsap.from(block, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: block,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none none",
-                },
+            blocks.forEach((block) => {
+                gsap.from(block, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: block,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none none",
+                    },
+                });
             });
-        });
+        // Анимация для каждого блока
     }, []);
 
     return (
         <div className={"main-container"}>
-            <CustomCursor />
+            {window.innerWidth > 1000 ? <CustomCursor /> : null}
+            <div className={"center"}><PopUp /></div>
             <MainBlockContent/>
             <div className="center"><HeaderFixed /></div>
             <div className="center"><MobileMenuFixed /></div>
@@ -59,7 +62,7 @@ function App() {
 
             <div className="animate-block"><Block children={<CreatorsContent />} /></div>
             <div className="animate-block"><Block children={<FAQContent />} /></div>
-            <FooterContent />
+            <div className="animate-block"><FooterContent /></div>
         </div>
     );
 }

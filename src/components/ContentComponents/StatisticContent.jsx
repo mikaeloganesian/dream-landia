@@ -196,7 +196,7 @@ function StatisticContent() {
                 <div className={"statistic-mobile-title"}>Краткосрочная<br/>сдача в аренду</div>
                 <div className={"statistic-mobile-title"}>Поддержка от<br/>Dream Landia</div>
                 <div id={"statistic-mobile-line"} className={"line"}></div>
-                <div className={"statistic-mobile-button"}>Рассчитать доход</div>
+                <a id={"mobile-link-to-calc"} href={"#CalculatorMenuHook"}><div className={"statistic-mobile-button"}>Рассчитать доход</div></a>
             </div>
             <div className={"statistic-mobile-description"}>
                 * Средний годовой чистый доход для<br/>виллы с 3 спальнями в Раваи

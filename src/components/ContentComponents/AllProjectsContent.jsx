@@ -57,7 +57,7 @@ function ProjectBlock ({className, image, title, description, setHidden }) {
     return (
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}  className={className || "block"}>
         <div className="blockContent">
-            <img style={isHovered ? {"height": "108px"} : {"height": "276px"}} src={image} alt={title} className="image"/>
+            <img style={isHovered ? {"height": "120px"} : {"height": "296px"}} src={image} alt={title} className="image"/>
             <div className="info">
                 <div className="text">
                     <div className="title">{title}</div>
@@ -93,6 +93,53 @@ function ProjectBlock ({className, image, title, description, setHidden }) {
     </div>
 )};
 
+
+function MobileProjectBlock ({className, image, title, description, setHidden }) {
+    const [isMoreInfo, setIsMoreInfo] = React.useState(false);
+
+    const handleDetailsClick = () => {
+        setIsMoreInfo((prev) => !prev); // Изменяем состояние isMoreInfo
+    };
+
+    return (
+        <div className={className || "block"}>
+            <div className="blockContent">
+                <img style={(!isMoreInfo ? {"height": "508px", "transition": "0.5s ease"} : {"height": "200px", "transition": "0.5s ease"})} src={image} alt={title} className="image"/>
+                <div className="info">
+                    <div className="text">
+                        <div className="title">{title}</div>
+                        <div className="description">{description}</div>
+                    </div>
+                    <div onClick={handleDetailsClick}><Button buttonID={"AllProjectsGetMoreInfoButton"} styleId={3} content="Подробнее" icon=""/></div>
+                </div>
+                <div className="extraInfo">
+                    <div style={(!isMoreInfo ? {"margin-top": "20px", "transition": "0.5s ease"} : {"margin-top": "40px", "transition": "0.5s ease"})} className="line"></div>
+                    <div className="table">
+                        <div className="tableLine">
+                            <div className="title">Этажность</div>
+                            <div className="value">7 этажей</div>
+                        </div>
+                        <div className="tableLine">
+                            <div className="title">Спальни</div>
+                            <div className="value">1-3 спальни</div>
+                        </div>
+                        <div className="tableLine">
+                            <div className="title">Цена за м²</div>
+                            <div className="value">от 10 000$</div>
+                        </div>
+                    </div>
+                    <div className="line"></div>
+                    <div className="table">
+                        <div className="tableLine">
+                            <div className="title">Дата сдачи</div>
+                            <div className="value">2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )};
+
 // Компонент для отображения большого блока
 const BigBlock = () => (
     <div className="block bigBlock">
@@ -117,6 +164,9 @@ function AllProjectsContent() {
     const [blockHeight, setBlockHeight] = React.useState(424);
     const [allProjectsHeight, setAllProjectsHeight] = React.useState(0);
 
+    const [isAllProjectsVisibleMobile, setIsAllProjectsVisibleMobile] = React.useState(false);
+
+
     // Получаем высоту блока после рендера
     React.useEffect(() => {
         if (blockRef.current) {
@@ -139,44 +189,103 @@ function AllProjectsContent() {
                     Лучшие проекты <br /> для жизни и инвестиций
                 </div>
                 <div className="description">
-                    Новые объекты на Пхукете: идеальное сочетание комфорта и выгодных инвестиций. Широкий выбор объектов в любых районах острова
+                    Новые объекты на Пхукете: идеальное сочетание комфорта и выгодных инвестиций. Широкий {window.innerWidth < 1200 ? <br/> : null} выбор объектов в любых районах острова
                 </div>
             </div>
 
-            <div
-                style={
-                    isHidden
-                        ? { transition: "0.6s ease", height: blockHeight + "px", overflow: "hidden" }
-                        : { transition: "0.6s ease", height: allProjectsHeight + "px", overflow: "hidden" }
-                }
-                className="allProjects"
-            >
-                {/* Отображение проектов */}
-                {projects.slice(0, 2).map((project) => (
-                    <ProjectBlock
-                        ref={blockRef}
-                        key={project.id}
-                        className="block"
-                        image={project.image}
-                        title={project.title}
-                        description={project.description}
+            {window.innerWidth > 1200 ? (
+                <div className="allProjects">
+                    <div className={"all-projects-visible"}>
+                        {projects.slice(0, 2).map((project) => (
+                            <ProjectBlock
+                                ref={blockRef}
+                                key={project.id}
+                                className="block"
+                                image={project.image}
+                                title={project.title}
+                                description={project.description}
+                                setHidden={setHidden}
+                            />
+                        ))}
+                        <BigBlock/>
+                </div>
+                    <div style={{ overflow: "hidden", maxHeight: !isHidden ? "2000px" : "0px",}} className={"all-projects-unvisible"}>
+                        {projects.slice(2).map((project) => (
+                            <ProjectBlock
+                                key={project.id}
+                                className={"block"}
+                                image={project.image}
+                                title={project.title}
+                                description={project.description}
+                                setHidden={setHidden}
+                            />
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div className="allProjectsMobile">
+                    <MobileProjectBlock
+                        key={projects[0].id}
+                        className={"block " + (isHidden ? "" : "")}
+                        image={projects[0].image}
+                        title={projects[0].title}
+                        description={projects[0].description}
                         setHidden={setHidden}
                     />
-                ))}
+                    <MobileProjectBlock
+                        key={projects[1].id}
+                        className={"block " + (isHidden ? "" : "")}
+                        image={projects[1].image}
+                        title={projects[1].title}
+                        description={projects[1].description}
+                        setHidden={setHidden}
+                    />
 
-                {/* Большой блок */}
-                <BigBlock />
-                {projects.slice(2).map((project) => (
-                    <ProjectBlock
-                        key={project.id}
-                        className={"block " + (isHidden ? "hidden" : "")}
-                        image={project.image}
-                        title={project.title}
-                        description={project.description}
-                        setHidden={setHidden}
-                    />
-                ))}
-            </div>
+                    <div className={"mobile-block"}>
+                        <div className="block-content">
+                            <div className={"mobile-title"}>Проведем для вас <br/>персонализированный <br/>онлайн-просмотр</div>
+                            <div className={"mobile-description"}>Не выходя из дома, выберите <br/>свой идеальный дом на Пхукете</div>
+                            <div onClick={()=>{setIsAllProjectsVisibleMobile(!isAllProjectsVisibleMobile)}}><Button buttonID={"see-all-projects-mobile-button"} content={!isAllProjectsVisibleMobile ? "Полный список объектов" : "Закрыть полный список"} styleId={3} /></div>
+                        </div>
+                    </div>
+
+                    <div style={{ overflow: "hidden", maxHeight: isAllProjectsVisibleMobile ? "10000px" : "0px", transition: "1s ease", }} className={"mobile-block-hidden"}>
+                        <MobileProjectBlock
+                            key={projects[2].id}
+                            className={"block " + (isHidden ? "" : "")}
+                            image={projects[2].image}
+                            title={projects[2].title}
+                            description={projects[2].description}
+                            setHidden={setHidden}
+                        />
+                        <MobileProjectBlock
+                            key={projects[3].id}
+                            className={"block " + (isHidden ? "" : "")}
+                            image={projects[3].image}
+                            title={projects[3].title}
+                            description={projects[3].description}
+                            setHidden={setHidden}
+                        />
+                        <MobileProjectBlock
+                            key={projects[4].id}
+                            className={"block " + (isHidden ? "" : "")}
+                            image={projects[4].image}
+                            title={projects[4].title}
+                            description={projects[4].description}
+                            setHidden={setHidden}
+                        />
+                        <MobileProjectBlock
+                            key={projects[5].id}
+                            className={"block " + (isHidden ? "" : "")}
+                            image={projects[5].image}
+                            title={projects[5].title}
+                            description={projects[5].description}
+                            setHidden={setHidden}
+                        />
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }
